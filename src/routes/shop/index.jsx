@@ -6,10 +6,11 @@ import Content from '_c/Content'
 
 import Loading from '_c/Loading';
 const Products = lazy(() => import('_c/shop/Products'));
+// import Products from '_c/shop/Products';
 
 export async function loader() {
-  const products = await client.product.fetchAll();
-  return products;
+  
+  return await client.product.fetchAll();
 }
 
 export default function Shop() {

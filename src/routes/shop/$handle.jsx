@@ -23,10 +23,10 @@ export default function Product() {
     )
   }
   return (
-    <Suspense fallback={"Loading product info..."}>
-      <Content>
+    <Content>
+      <Suspense fallback={"Loading product info..."}>
         <ProductCard product={product} handle={handle} />
-      </Content>
-    </Suspense>
+      </Suspense>
+    </Content>
   )
 }

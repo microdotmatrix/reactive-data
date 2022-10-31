@@ -1,7 +1,12 @@
+// Import global stylesheet
 import "./styles/main.scss";
+
+// Import React's lazy and suspense modules for loading async components
+// Import Router functions
 import { Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider, useRouteError } from "react-router-dom";
 
+// Synchronous route and loader elements
 import Root, { loader as rootLoader } from "./routes/root";
 import NewNote, { action as newNoteAction } from "./routes/new";
 import Note, {
@@ -15,6 +20,7 @@ import { loader as productLoader } from './routes/shop/$handle'
 import Contact from './routes/contact';
 import Error from './routes/404';
 
+// Asynchronous route elements
 const Home = lazy(() => import('./routes/home'));
 const About = lazy(() => import('./routes/about'));
 const Blog = lazy(() => import('./routes/blog'));
@@ -22,16 +28,24 @@ const Post = lazy(() => import('./routes/blog/$slug'));
 const Shop = lazy(() => import('./routes/shop'));
 const Product = lazy(() => import('./routes/shop/$handle'));
 
+// Page loading fallback element and Shop Context Provider
 import Loading from './components/Loading';
 import ShopProvider from "./context/store";
+
+// Configuration of React Router v6 data router
+// Paths defining route url structures, errorElements to handle Error Boundary responses
+// Loaders used for route-specific dynamic data fetching and loading
+// Actions control route-specific dynamic data submission handling
 let router = createBrowserRouter([
   {
+    // Root element loads as parent route wrapping the site's pages in a global layout and context loader
     path: "/",
     element: <Root />,
     loader: rootLoader,
     errorElement: <ErrorBoundary />,
     children: [
       {
+        // Home page element
         index: true,
         errorElement: <ErrorBoundary />,
         element: (
@@ -41,6 +55,7 @@ let router = createBrowserRouter([
         )
       },
       {
+        // About page element
         path: "about",
         errorElement: <ErrorBoundary />,
         element: (
@@ -50,52 +65,65 @@ let router = createBrowserRouter([
         )
       },
       {
+        // Blog page element, loader function fetching data from WordPress API using GraphQL
         path: "blog",
         loader: blogLoader,
         errorElement: <ErrorBoundary />,
-        element: 
+        element: (
           <Suspense fallback={<Loading />}>
             <Blog />
-          </Suspense>,
+          </Suspense>
+        ),
       },
       {
+        // Dynamic route for viewing individual post loaded from WordPress API
         path: "blog/:slug",
         loader: postLoader,
         errorElement: <ErrorBoundary />,
-        element: 
+        element: (
           <Suspense fallback={<Loading />}>
             <Post />
           </Suspense>
+        )
       },
       {
+        // Shop page element, loader function fetching data from Shopify Storefront API
         path: "shop",
         loader: shopLoader,
         errorElement: <ErrorBoundary />,
-        element: 
+        element: (
           <Suspense fallback={<Loading />}>
             <Shop />
           </Suspense>
+        )
       },
       {
+        // Dynamic route for viewing individual product details loaded from Shopify API
         path: "shop/:handle",
         loader: productLoader,
         errorElement: <ErrorBoundary />,
-        element: 
+        element: (
           <Suspense fallback={<Loading />}>
             <Product />
           </Suspense>
+        )
       },
       {
+        // Contact page element
+        // TODO: Add route action for handling email form submission
         path: "contact",
-        element:
-          <Contact />
+        element: <Contact />
       },
       {
+        // Create note function for submitting input data to local cache storage
+        // Kept from original example repo forked from Remix-Run/React-Router
         path: "new",
         element: <NewNote />,
         action: newNoteAction,
       },
       {
+        // Dynamic route for viewing individual notes loaded from local storage cache
+        // Kept from original example repo forked from Remix-Run/React-Router
         path: "note/:noteId",
         element: <Note />,
         loader: noteLoader,
@@ -104,13 +132,14 @@ let router = createBrowserRouter([
       },
       {
         path: "/*",
-        element:
-          <Error />
+        element: <Error />
       }
     ],
   },
 ]);
 
+// Customized ErrorBoundary to act as fallback element for data-router elements
+// Will print formatted message explaining error function in context
 function ErrorBoundary() {
   let error = useRouteError();
   console.error(error);
@@ -127,6 +156,7 @@ if (import.meta.hot) {
   import.meta.hot.dispose(() => router.dispose());
 }
 
+// App function as foundation for site router
 export default function App() {
   return (
     <ShopProvider>

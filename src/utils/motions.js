@@ -1,7 +1,9 @@
+// Framer Motion element variants
+
 export const pageTransition = {
   init: {
     scale: 1,
-    y: '-10px',
+    y: '-30px',
     opacity: 0,
     transition: {
       delay: 0,
@@ -19,7 +21,7 @@ export const pageTransition = {
   },
   exit: {
     scale: 0,
-    y: '10px',
+    y: '30px',
     opacity: 0,
     transition: {
       delay: 0,
@@ -28,5 +30,8 @@ export const pageTransition = {
   },
   transition: {
     duration: 0.5
+  },
+  transitionEnd: {
+    display: "none"
   }
 }

@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Icon } from '@iconify/react'
+import { Icon } from '@iconify-icon/react'
 import { useDarkMode } from "_h/darkMode"
 
 export default function DarkSwitch(props) {

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Icon } from '@iconify/react';
+import { Icon } from '@iconify-icon/react';
 
 export default function Error() {
   return (

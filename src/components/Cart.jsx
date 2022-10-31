@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Icon } from "@iconify/react";
+import { Icon } from "@iconify-icon/react";
 import { ShopContext } from "../context/store";
 
 import { motion } from "framer-motion";

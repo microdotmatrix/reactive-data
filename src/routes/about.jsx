@@ -1,4 +1,4 @@
-import { Content } from '_c/Content';
+import Content from '_c/Content';
 
 export default function About() {
   return (

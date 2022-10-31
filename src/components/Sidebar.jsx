@@ -1,5 +1,5 @@
 import { useLoaderData, Link } from "react-router-dom";
-import { Icon } from '@iconify/react';
+import { Icon } from '@iconify-icon/react';
 
 import Nav from '_c/Nav';
 

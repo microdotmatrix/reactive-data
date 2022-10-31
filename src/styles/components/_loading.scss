@@ -1,3 +1,6 @@
+:root { 
+  --load-bg-opacity: 0.0;
+}
 .loading {
   display: 'flex';
   position: 'absolute';
@@ -6,6 +9,30 @@
   z-index: '999';
   justify-content: 'center';
   align-items: 'center';
-  width: '100%';
-  height: '100%';
+  width: '100vw';
+  height: '100vh';
+  background: rgba(220, 220, 221, var(--load-bg-opacity));
+  .spinner {
+    /* Size */
+    height: 8rem;
+    width: 8rem;
+  
+    /* Create a curve at the top */
+    border: 8px solid #d1d5db;
+    border-top-color: #1f2731;
+    border-radius: 50%;
+  
+    animation: spinner 800ms linear infinite;
+  }
+}
+
+@keyframes spinner {
+  from {
+      --load-bg-opacity: 0.3;
+      transform: rotate(0deg);
+  }
+  to {
+      --load-bg-opacity: 1
+      transform: rotate(360deg);
+  }
 }

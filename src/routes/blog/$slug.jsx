@@ -16,10 +16,10 @@ export default function Post() {
   let post = useLoaderData();
   let slug = useParams();
   return (
-    <Suspense fallback={<Loading />}>
-      <Content>
+    <Content>
+      <Suspense fallback={<Loading />}>
         <PostView post={post} slug={slug} />
-      </Content>
-    </Suspense>
+      </Suspense>
+    </Content>
   )
 }
