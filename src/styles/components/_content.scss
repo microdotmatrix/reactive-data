@@ -1,0 +1,7 @@
+@use 'gerillass' as *;
+@use '../config' as *;
+
+.content {
+  width: 100%;
+  padding: var(--space-m) var(--gutter-x);
+}

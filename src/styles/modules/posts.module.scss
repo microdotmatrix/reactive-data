@@ -1,0 +1,28 @@
+@use 'gerillass' as *;
+@use '@css/config' as *;
+
+.post {
+  position: relative;
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &__header {
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+    background-color: rgba(220, 220, 200, 0.2);
+    .title {
+      font-size: $lg;
+      letter-spacing: -0.04em;
+    }
+    .date {
+      font-size: $sm;
+      display: block;
+    }
+  }
+  &__excerpt {
+    width: 100%;
+    padding: 1rem;
+  }
+}

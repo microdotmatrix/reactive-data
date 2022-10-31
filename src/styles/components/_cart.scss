@@ -1,0 +1,21 @@
+@use '../config' as *;
+@use '../functions' as *;
+
+.cart-container {
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  width: 33%;
+  height: 100%;
+  background-color: rgba(ocGray(9), 0.9);
+  backdrop-filter: blur(3px);
+  color: var(--c-background);
+
+  .cart-empty {
+    font-size: $h4;
+    font-family: $armata;
+    margin-top: 20%;
+  }
+}
+

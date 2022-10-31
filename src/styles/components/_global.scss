@@ -1,0 +1,113 @@
+@use 'gerillass' as *;
+@use '../config' as *;
+@use '../functions/gradients' as fng;
+
+html {
+  font-size: var(--baseTextSize);
+  line-height: var(--globalLineHeight);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: $text-font;
+  font-weight: $text-weight;
+  background-color: var(--c-background);
+  color: var(--c-body);
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  transition: color 150ms ease-in-out, background 420ms ease;
+  * {
+    transition: all 100ms ease;
+  }
+}
+
+#root {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  min-width: 320px;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.page-wrapper {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  padding: var(--space-xl) 0;
+}
+
+main {
+  flex: 1;
+}
+
+.container {
+  @include adaptive(1.618rem);
+}
+
+.loader {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-content: center;
+  &__fallback {
+    @extend .loader;
+    text-align: center;
+    font-size: $lg;
+  }
+}
+
+.title {
+  margin-top: $space;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.view-mobile {
+  display: flex;
+  visibility: visible;
+  @include breakpoint(min, large) {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+.flex-content {
+  display: flex;
+  flex-direction: column;
+  gap: $space;
+  margin: calc($space * 0.5) auto $space;
+  @include breakpoint(min, large) {
+    flex-direction: row;
+  }
+}
+
+.darkMode-icon {
+  display: inline-block;
+  svg > path {
+    transition: all 300ms ease;
+  }
+}
+
+input[type="text"],
+  input[type="textarea"] {
+    @apply 
+      mt-1
+      block
+      w-full
+      rounded-md
+      bg-gray-100
+      dark:bg-gray-900
+      border-transparent
+      focus:border-gray-500 
+      focus:bg-white 
+      focus:ring-0;
+  }

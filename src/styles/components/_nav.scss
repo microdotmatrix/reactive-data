@@ -1,0 +1,23 @@
+@use '../config' as *;
+
+.site-menu {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+  padding-left: var(--space-m);
+  a[href] {
+    font-size: $lg;
+    font-weight: 500;
+    font-family: $ntr;
+    text-transform: uppercase;
+    &.active {
+      color: var(--c-linkActive);
+    }
+  }
+  @media (min-width: $xlarge) {
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+}

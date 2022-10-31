@@ -1,0 +1,28 @@
+@use 'gerillass' as *;
+@use '../config' as *;
+@use '../functions' as f;
+
+.header {
+  @include columnizer(1, true);
+  width: 100%;
+  padding: 1.25rem var(--gutter-x) 0.5rem;
+  border-bottom: 1px solid f.slate(3);
+  @media (min-width: $medium) {
+    @include columnizer(3, true);
+    div:nth-child(1) {
+      flex: 2;
+      h1 {
+        margin: 0;
+      }
+    }
+    div:nth-child(2) {
+      flex: 4;
+    }
+    div:nth-child(3) {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+}

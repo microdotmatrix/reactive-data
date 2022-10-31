@@ -1,0 +1,44 @@
+@use 'gerillass' as *;
+@use '../config' as *;
+
+.product {
+  width: 100%;
+  &__images {
+    border-right: 1px solid cool(3);
+  }
+  &__details {
+    > .title {
+      color: var(--c-linkActive);
+    }
+    > .price {
+      position: relative;
+      font-family: $nova-square;
+      font-size: $h3;
+      font-weight: 600;
+      letter-spacing: 0.05rem;
+      margin: var(--space-l) 0 var(--space-m);
+      &::before {
+        position: relative;
+        content: '$';
+      }
+    }
+    > .add-to-cart {
+      background: var(--c-buttonBg);
+      color: var(--c-body);
+      text-align: center;
+      padding: var(--textFrameY) var(--textFrameX);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      transform: scale(1);
+      transform-origin: center;
+      transition: transform 133ms ease-in, 
+                  color 250ms ease-in-out,
+                  background 350ms ease;
+      &:hover {
+        background: var(--c-accent);
+        color: var(--c-bodyDimmed);
+        transform: scale(1.08);
+      }
+    }
+  }
+}
