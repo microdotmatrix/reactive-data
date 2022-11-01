@@ -13,10 +13,14 @@ export default function ProductCard({ product, optionSelect }) {
           <p>{product.descriptionHtml}</p>
           
           <h3>{product.variants[0].price.amount}</h3>
-          {optionSelect}
-          <button className='add-to-cart' onClick={() => addItemToCheckout(product.variants[0].id.toString(), 1)}>
-            Add to Cart
-          </button>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            <select name={product.variants[0].title} id={product.variants[0].id}>
+              {optionSelect}
+            </select>
+            <button className='add-to-cart' onClick={() => addItemToCheckout(product.variants[0].id.toString(), 1)}>
+              Add to Cart
+            </button>
+          </div>
         </div>
         <div className="product__images grid grid-cols-3 gap-2">
           <div className="col-span-3">

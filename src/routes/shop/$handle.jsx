@@ -15,7 +15,7 @@ export default function Product() {
   let product = useLoaderData();
   const optionSelect = product.variants.map((variant, index) => {
     return (
-      <select name={variant.title} id={variant.id}>{variant.title}</select>
+      <option value={variant.id}>{variant.title}</option>
     )
   })
   if (!product) {
