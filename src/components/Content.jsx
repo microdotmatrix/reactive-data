@@ -10,6 +10,7 @@ export default function Content({ children }) {
       variants={pageTransition}
       initial="init"
       animate="animate"
+      transition={{ type: 'spring', stiffness: 5 }}
       exit="exit"
     >
       { children }

@@ -7,7 +7,7 @@ export default function PostView({ post }) {
   return (
     <div>
       <h1>{title}</h1>
-      <span>{date}</span>
+      <span>{new Date(date).toDateString()}</span>
       <article>
         <div dangerouslySetInnerHTML={{ __html: content }}></div>
       </article>

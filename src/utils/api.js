@@ -3,6 +3,8 @@ import { GraphQLClient, gql } from "graphql-request";
 // Load JSON function from React Router to standardize JSON formatting of returned fetch-data
 import { json } from 'react-router-dom';
 
+const is404 = (error) => /not found/i.test(error.message)
+
 // Return promise function with a load delay timer for suspense animations
 export function sleep(n = 500) {
   return new Promise((r) => setTimeout(r, n));
@@ -33,12 +35,12 @@ const GET_POSTS = gql`
 
 // Fetching posts from WordPress
 export const getPosts = async () => {
-  await sleep(2000);
-  let data = await graphql.request(GET_POSTS, {});
-  if (!data) {
-    throw new Error(`Posts failed to load... do they exist?`)
+  try {
+    let data = await graphql.request(GET_POSTS, {});
+    return json(data.posts);
+  } catch (error) {
+    throw error.message
   }
-  return json(data.posts);
 }
 
 // GraphQL query post by slug
@@ -57,12 +59,13 @@ const GET_POST = gql`
 
 // Fetching single post by it's slug param from WordPress
 export async function getPost({ slug }) {
-  await sleep(1000);
-  const data = await graphql.request(GET_POST, { slug });
-  if (!data) {
-    throw new Error(`Posts failed to load... do they exist?`)
+  try {
+    let data = await graphql.request(GET_POST, { slug });
+    return json(data.postBy);
+  } catch (error) {
+    if (is404(error)) return
+    throw error.message
   }
-  return json(data.postBy);
 }
 
 async function fakeNetwork() {

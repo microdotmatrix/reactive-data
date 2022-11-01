@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
-import { useLoaderData } from 'react-router-dom';
-import { sleep, getPosts } from '../../utils/api';
+import { useLoaderData, defer } from 'react-router-dom';
+import { getPosts } from '../../utils/api';
 
 import Content from '_c/Content';
 import Loading from '_c/Loading';

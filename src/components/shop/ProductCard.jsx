@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { ShopContext } from "../../context/store";
 
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, optionSelect }) {
   const { addItemToCheckout } = useContext(ShopContext); 
   
   return (
@@ -11,7 +11,9 @@ export default function ProductCard({ product }) {
         <div>
           <h2>{product.title}</h2>
           <p>{product.descriptionHtml}</p>
+          
           <h3>{product.variants[0].price.amount}</h3>
+          {optionSelect}
           <button className='add-to-cart' onClick={() => addItemToCheckout(product.variants[0].id.toString(), 1)}>
             Add to Cart
           </button>

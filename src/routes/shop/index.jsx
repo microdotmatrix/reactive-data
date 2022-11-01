@@ -1,15 +1,12 @@
 import React, { lazy, Suspense } from 'react'
 import { useLoaderData } from 'react-router-dom';
-import { sleep } from '_u/api';
 import { client } from '../../context/store';
 import Content from '_c/Content'
 
 import Loading from '_c/Loading';
 const Products = lazy(() => import('_c/shop/Products'));
-// import Products from '_c/shop/Products';
 
 export async function loader() {
-  
   return await client.product.fetchAll();
 }
 

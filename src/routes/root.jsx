@@ -24,7 +24,7 @@ export default function Root() {
   return (
     <>
       <main className='relative flex w-full'>
-        <aside className="relative py-8 border-r border-r-slate-300 dark:border-r-zinc-900 justify-center flex flex-col items-center max-h-screen" style={{ flex: "3 0 0" }}>
+        <aside className="relative py-8 justify-center flex flex-col items-center max-h-screen" style={{ flex: "3 0 0" }}>
           <Sidebar />
         </aside>
         <article className="flex flex-col px-12 pt-20 pb-6" style={{ flex: "6 0 0", height: "auto", minHeight: "50%", margin: "auto" }}>

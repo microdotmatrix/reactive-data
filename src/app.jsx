@@ -13,7 +13,7 @@ import Note, {
   loader as noteLoader,
   action as noteAction,
 } from "./routes/note";
-import { loader as blogLoader } from "./routes/blog";
+import Blog, { loader as blogLoader } from "./routes/blog";
 import { loader as postLoader } from "./routes/blog/$slug";
 import { loader as shopLoader } from './routes/shop';
 import { loader as productLoader } from './routes/shop/$handle'
@@ -23,7 +23,7 @@ import Error from './routes/404';
 // Asynchronous route elements
 const Home = lazy(() => import('./routes/home'));
 const About = lazy(() => import('./routes/about'));
-const Blog = lazy(() => import('./routes/blog'));
+// const Blog = lazy(() => import('./routes/blog'));
 const Post = lazy(() => import('./routes/blog/$slug'));
 const Shop = lazy(() => import('./routes/shop'));
 const Product = lazy(() => import('./routes/shop/$handle'));
@@ -69,11 +69,7 @@ let router = createBrowserRouter([
         path: "blog",
         loader: blogLoader,
         errorElement: <ErrorBoundary />,
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Blog />
-          </Suspense>
-        ),
+        element: <Blog />
       },
       {
         // Dynamic route for viewing individual post loaded from WordPress API

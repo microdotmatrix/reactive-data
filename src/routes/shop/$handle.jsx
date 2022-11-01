@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from 'react'
-import { useParams, useLoaderData } from 'react-router-dom';
-//import { ShopContext } from '../../context/store'; 
+import { useParams, useLoaderData } from 'react-router-dom'; 
 import { client } from '../../context/store';
 
 import Content from '_c/Content'
@@ -14,6 +13,11 @@ export async function loader({ params }) {
 export default function Product() {
   let handle = useParams();
   let product = useLoaderData();
+  const optionSelect = product.variants.map((variant, index) => {
+    return (
+      <select name={variant.title} id={variant.id}>{variant.title}</select>
+    )
+  })
   if (!product) {
     return (
       <div className='w-full h-full flex flex-col items-center'>
@@ -25,7 +29,7 @@ export default function Product() {
   return (
     <Content>
       <Suspense fallback={"Loading product info..."}>
-        <ProductCard product={product} handle={handle} />
+        <ProductCard product={product} handle={handle} optionSelect={optionSelect} />
       </Suspense>
     </Content>
   )

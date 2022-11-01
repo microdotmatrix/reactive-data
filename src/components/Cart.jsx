@@ -75,7 +75,7 @@ const Cart = () => {
                           {item.title}
                         </div>
                         <div className="text-xl font-semibold text-green-800">
-                          {item.variant.price.toString()}
+                          {item.variant.price.amount.toString()}
                         </div>
                         <div className="text-m">{item.quantity}</div>
                         <button
