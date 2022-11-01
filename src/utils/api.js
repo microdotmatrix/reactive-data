@@ -23,11 +23,43 @@ const GET_POSTS = gql`
     posts (first: 100, where: {orderby: {field: DATE, order: DESC}}) {
       nodes {
         id
-        title
+        date
         slug
         uri
-        date
+        title
         excerpt
+        featuredImage {
+          node {
+            sourceUrl
+            title
+            sizes
+            description
+            caption
+            altText
+          }
+        }
+        tags(first: 10) {
+          nodes {
+            name
+          }
+        }
+        categories(first: 5) {
+          nodes {
+            name
+          }
+        }
+        author {
+          node {
+            name
+            firstName
+            lastName
+            email
+            url
+            avatar {
+              url
+            }
+          }
+        }
       } 
     }
   }
@@ -48,11 +80,46 @@ const GET_POST = gql`
   query getPost($slug: String!) {
     postBy(slug: $slug) {
       id
-      title
       slug
-      content
-      date
-      uri
+      ...PostFragment
+    }
+  }
+  fragment PostFragment on Post {
+    date
+    title
+    excerpt
+    content
+    featuredImage {
+      node {
+        sourceUrl
+        title
+        sizes
+        description
+        caption
+        altText
+      }
+    }
+    date
+    tags(first: 10) {
+      nodes {
+        name
+      }
+    }
+    categories(first: 5) {
+      nodes {
+        name
+      }
+    }
+    author {
+      node {
+        name
+        firstName
+        lastName
+        email
+        avatar {
+          url
+        }
+      }
     }
   }
 `;

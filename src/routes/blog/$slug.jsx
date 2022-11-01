@@ -1,5 +1,6 @@
 import { lazy, Suspense, useRef } from 'react';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
+import Helmet from 'react-helmet';
 import { sleep, getPost } from '_u/api';
 
 
@@ -17,6 +18,10 @@ export default function Post() {
   let slug = useParams();
   return (
     <Content>
+      <Helmet>
+        <title>{post.title}</title>
+        <meta name="description" content={post.excerpt} />
+      </Helmet>
       <Suspense fallback={<Loading />}>
         <PostView post={post} slug={slug} />
       </Suspense>

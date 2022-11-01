@@ -1,5 +1,6 @@
 import { lazy, Suspense, useContext } from 'react'
 import { useLoaderData, Link, Outlet } from "react-router-dom";
+import Helmet from 'react-helmet';
 import { Icon } from '@iconify-icon/react'
 import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
 
@@ -23,11 +24,14 @@ export default function Root() {
   let { openCart } = useContext(ShopContext)
   return (
     <>
+      <Helmet>
+        <meta name="description" content="First project using the Data Router functions in React Router v6" />
+      </Helmet>
       <main className='relative flex w-full'>
         <aside className="relative py-8 justify-center flex flex-col items-center max-h-screen" style={{ flex: "3 0 0" }}>
           <Sidebar />
         </aside>
-        <article className="flex flex-col px-12 pt-20 pb-6" style={{ flex: "6 0 0", height: "auto", minHeight: "50%", margin: "auto" }}>
+        <article className="flex flex-col h-full min-h-screen border-l border-l-slate-300 dark:border-l-zinc-900  px-12 pt-20 pb-6" style={{ flex: "6 0 0", height: "auto", minHeight: "50%", margin: "auto" }}>
           <AnimatePresence mode="wait">
             <Outlet />
           </AnimatePresence>

@@ -7,7 +7,7 @@ export default function Sidebar() {
   const { notes } = useLoaderData();
 
   return (
-    <div className="h-full flex-1 border-r border-r-slate-300 dark:border-r-zinc-900 max-h-screen fixed flex flex-col">
+    <div className="flex flex-col fixed">
       <Link to="/">
         <h1>
           <Icon icon="brandico:wordpress" width="180px" />

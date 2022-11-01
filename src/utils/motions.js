@@ -16,11 +16,11 @@ export const pageTransition = {
     opacity: 1,
     transition: {
       delay: 0.2,
-      duration: 0.5
+      duration: 0.5,
     }
   },
   exit: {
-    scale: 0,
+    scale: 0.5,
     y: '30px',
     opacity: 0,
     transition: {
