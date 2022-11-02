@@ -1,5 +1,22 @@
 @use "functions" as *;
 
+$modularscale: (
+  base: 0.6rem,
+  ratio: 1.618,
+  768px: (
+    base: 0.9rem,
+    ratio: 1.333,
+  ),
+  1024px: (
+    base: 1rem,
+    ratio: 1.5,
+  ),
+  1440px: (
+    base: 1.2rem,
+    ratio: 1.618
+  )
+);
+
 :where(html) {
   --container-max: 1600px;
   --content-width: min(100%,var(--container-max,1600px));
@@ -48,18 +65,18 @@ $h4:                  var(--h4);
 $h5:                  var(--h5);
 $h6:                  var(--h6);
 
-$genos: 'Genos', sans-serif;
 $oswald: 'Oswald', sans-serif;
 $saira: 'Saira', sans-serif;
 $sharetech: 'Share Tech', sans-serif;
 $armata: 'Armata', sans-serif;
-$mitr: 'Mitr', sans-serif;
 $ntr: 'NTR', sans-serif;
-$rubik: 'Rubik', sans-serif;
 $rubik-iso: 'Rubik Iso', sans-serif;
 $nova-square: 'Nova Square', cursive;
 $teko: 'Teko', sans-serif;
 $prompt: 'Prompt', sans-serif;
+$cuprum: 'Cuprum', sans-serif;
+$alumni: 'Alumni Sans', sans-serif;
+$smooch: 'Smooch Sans', sans-serif;
 
 $text-font:           $prompt;
 $text-line:           1.618;

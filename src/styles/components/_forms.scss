@@ -1,0 +1,16 @@
+@use 'gerillass' as *;
+@use '../functions' as *;
+@use '../config' as *;
+
+
+@include all-text-inputs {
+  @apply mt-1 py-3 px-4 block w-full rounded-md border border-gray-300/80 bg-gray-100/80 dark:bg-gray-700/40;
+  font-size: $p;
+  font-family: $sharetech;
+  transition: all 300ms ease-in;
+}
+
+@include all-text-inputs(focus) {
+  outline: 1px solid slate(4);
+  @apply shadow-xl shadow-slate-400/50 dark:shadow-slate-700/50;
+}

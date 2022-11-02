@@ -9,6 +9,7 @@
   "dependencies": {
     "graphql-request": "^5.0.0",
     "localforage": "^1.10.0",
+    "modularscale-sass": "^3.0.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",

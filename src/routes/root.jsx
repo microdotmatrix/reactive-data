@@ -28,7 +28,7 @@ export default function Root() {
         <meta name="description" content="First project using the Data Router functions in React Router v6" />
       </Helmet>
       <main className='relative flex w-full'>
-        <aside className="relative py-8 justify-center flex flex-col items-center max-h-screen" style={{ flex: "3 0 0" }}>
+        <aside className="relative py-8 justify-center flex flex-col items-center max-h-screen" style={{ flex: "2 0 0" }}>
           <Sidebar />
         </aside>
         <article className="flex flex-col h-full min-h-screen border-l border-l-slate-300 dark:border-l-zinc-900  px-12 pt-20 pb-6" style={{ flex: "6 0 0", height: "auto", minHeight: "50%", margin: "auto" }}>

@@ -62,7 +62,7 @@ class ShopProvider extends Component {
     this.openCart();
   };
 
-  async updateQuantityInCheckout (lineItemId, quantity) {
+  async updateQuantityInCheckout(lineItemId, quantity) {
     const lineItemsToUpdate = [
       {
         id: lineItemId,
@@ -85,6 +85,13 @@ class ShopProvider extends Component {
       this.setState({ checkout: checkout })
     });
   };
+
+  async getCheckoutSubtotal(lineItems, quantity) {
+    
+    let totalPrice = 0
+    lineItems.forEach(item => totalPrice += parseInt(item.variant.quantity) * parseFloat(item.variant.price.amount))
+    return Math.round(totalPrice * 100) / 100
+  }
 
   fetchAllProducts = async () => {
     const products = await client.product.fetchAll();
@@ -136,6 +143,7 @@ class ShopProvider extends Component {
           fetchProductWithHandle: this.fetchProductWithHandle,
           fetchCollections: this.fetchCollections,
           fetchCollectionWithId: this.fetchCollectionWithId,
+          getCheckoutSubtotal: this.getCheckoutSubtotal,
           closeCart: this.closeCart.bind(this),
           openCart: this.openCart.bind(this),
           addItemToCheckout: this.addItemToCheckout.bind(this),

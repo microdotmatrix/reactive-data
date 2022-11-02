@@ -13,9 +13,15 @@ export async function loader({ params }) {
 export default function Product() {
   let handle = useParams();
   let product = useLoaderData();
-  const optionSelect = product.variants.map((variant, index) => {
+  const optionSelect = product.variants.map((item, index) => {
     return (
-      <option value={variant.id}>{variant.title}</option>
+      <option
+        id={item.id}
+        key={item.id}
+        value={item.id}
+      >
+        {item.title}
+      </option>
     )
   })
   if (!product) {

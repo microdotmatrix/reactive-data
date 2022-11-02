@@ -1,17 +1,26 @@
 import { resolve } from "path";
-import { defineConfig } from "vite";
+import { defineConfig, splitVendorChunkPlugin } from "vite";
 import react from "@vitejs/plugin-react";
 import mkcert from "vite-plugin-mkcert";
+import webfontDownload from 'vite-plugin-webfont-dl'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
+  publicDir: './public',
+  build: {
+    base: './dist',
+    outDir: './dist',
+  },
   server: {
     host: 'localhost',
     https: true
   },
   plugins: [
     react(),
-    mkcert()
+    mkcert(),
+    // webfontDownload(),
+    splitVendorChunkPlugin()
   ],
   resolve: {
     alias: {
