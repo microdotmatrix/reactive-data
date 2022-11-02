@@ -31,7 +31,7 @@ export default function ProductCard({ product, optionSelect }) {
   const price = product.variants[0].price.amount 
 
   return (
-    <div className='w-full'>
+    <div className='w-full my-auto'>
       <div className="grid md:grid-cols-2 gap-8">
         <div className='flex flex-col gap-8 order-2 md:order-1 md:py-12 lg:py-20 2xl:py-24'>
           <h2>{product.title}</h2>
@@ -45,8 +45,8 @@ export default function ProductCard({ product, optionSelect }) {
             <span className='opacity-0'>...</span>
             )}
           
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-            <h3>{formatCurrency(price)}</h3>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-center'>
+            <h3 className='mb-0'>{formatCurrency(price)}</h3>
             <button className='btn' onClick={() => addItemToCheckout(product.variants[0].id.toString(), 1)}>
               Add to Cart
             </button>

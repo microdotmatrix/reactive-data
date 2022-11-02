@@ -5,7 +5,6 @@ $hamburger-types: ( elastic );
 $hamburger-padding-x: 2rem;
 $hamburger-padding-y: 2rem;
 
-@use 'modularscale-sass' as *;
 @use '../config' as *;
 
 .btn,

@@ -1,28 +1,105 @@
 @use 'gerillass' as *;
 @use '@css/config' as *;
+@use '@css/functions' as *;
 
 .post {
-  position: relative;
+  width: 100%;
   &__list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
-  &__header {
+  header {
     width: 100%;
+    height: 40vh;
     margin: 0;
-    padding: 1rem;
-    background-color: rgba(220, 220, 200, 0.2);
+    padding: 0 1vw 0 24vw;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      @include linear-gradient(left, (rgba(#43c6ac, 0.3) 0) (var(--c-background) 90%));
+    }
     .title {
       font-size: $lg;
       letter-spacing: -0.04em;
     }
     .date {
       font-size: $sm;
-      display: block;
+      display: flex;
+      gap: 0.5rem;
+      color: var(--c-bodyDimmed);
+    }
+    .author {
+      font-size: $p;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+      color: var(--c-body);
+      &::after {
+        content: '';
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 2px;
+        z-index: -1;
+        @include linear-gradient(right, var(--c-bodyDimmed) transparent);
+      }
+    }
+    .tag {
+      margin-right: 1rem;
+      margin-left: 0.25rem;
+      color: var(--c-bodyDimmed);
+      font-size: 1.25em;
+      font-family: $smooch;
     }
   }
-  &__excerpt {
-    width: 100%;
-    padding: 1rem;
+  article {
+    margin-top: 40vh;
+  }
+}
+
+.postList {
+  @include adaptive(2rem);
+  margin-left: 0;
+  @include columnizer(3, true);
+  gap: 1rem;
+  section:first-child {
+    flex: 1 0 50%;
+    .post__cover {
+      min-block-size: 360px;
+      max-block-size: 540px;
+      .meta {
+        > h4 {
+          font-size: $h3;
+        }
+      }
+    }
+  }
+  section {
+    .post__cover {
+      min-block-size: 200px;
+      max-block-size: 300px;
+      @apply w-full overflow-hidden relative z-10 bg-gradient-to-r from-slate-900 dark:from-slate-200 border border-slate-400;
+      .meta {
+        @apply absolute top-0 left-0 z-20 flex flex-col justify-end w-full h-full py-3 px-4 bg-gradient-to-r from-zinc-100/80 dark:from-black backdrop-blur-sm hover:backdrop-blur-none;
+      }
+    }
+  }
+  .excerpt {
+    padding: var(--space-s) var(--space-m);
+    p {
+      font-size: var(--sm);
+    }
   }
 }

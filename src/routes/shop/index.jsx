@@ -20,7 +20,8 @@ export default function Shop() {
   }
   return (
     <Content>
-      <h1>Buy Shit</h1>
+      <h1 className='title'>Web Store</h1>
+      <h4 className="sub-title">Ecommerce Integration with Shopify</h4>
       <Suspense fallback={<Loading />}>
         <Products products={products} />
       </Suspense>

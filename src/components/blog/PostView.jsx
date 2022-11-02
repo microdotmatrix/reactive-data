@@ -1,17 +1,44 @@
 import { useRef } from 'react';
 import { useInView } from 'framer-motion'
+import { Icon } from '@iconify-icon/react';
+
+import css from '@css/modules/posts.module.scss'
 
 export default function PostView({ post }) {
   let { title, date, content, featuredImage, author, tags, categories } = post;
-
+  const name = author
+    ? author.node.firstName && author.node.lastName
+      ? `${author.node.firstName} ${author.node.lastName}`
+      : author.node.name
+    : null
+  
   return (
-    <div className='relative w-full'>
-      <header className='sticky top-0 right-0 cover w-full h-[40vh] flex flex-col items-start justify-end'>
-        <img src={featuredImage?.node.sourceUrl} alt={title} className="w-full h-full object-cover absolute z-0" />
-        <div className='info py-4 px-6 z-10'>
+    <div className={css.post}>
+      <header>
+        {featuredImage?.node.sourceUrl ? (
+          <img src={featuredImage?.node.sourceUrl} alt={title} className="w-full h-full object-cover absolute z-0" />
+        ): (
+          <img src="http://unsplash.it/1600/1200?random&gravity=center" alt={title} className="w-full h-full object-cover absolute z-0" />  
+        )}
+        <div className='info py-4 px-12 z-10'>
           <h2>{title}</h2>
-          <time dateTime={date} className='date block'>{new Date(date).toDateString()}</time>
-          <span className="author">by {author?.node.name}</span>
+          <div className={css.date}>
+            <Icon icon="ph:calendar-duotone" width="25" />
+            <time dateTime={date} className={css.date}>{new Date(date).toDateString()}</time>
+          </div>
+          <div className={css.author}>by {name}</div>
+          
+          <div className='tags'>
+            <Icon icon="ph:hash" inline={true} />:  
+            {tags?.nodes.map(({ name }, index) => (
+              <>
+                <Icon icon="ph:tag-chevron-duotone" inline={true} /><span className={css.tag}>{name}</span>
+              </>
+            ))}
+          </div>
+          <div className='absolute left-2/3 lg:left-1/2 xl:left-[45%] bottom-2 rounded-full overflow-hidden border border-slate-600/30 z-10'>
+            <img src={author?.node.avatar.url} alt={name} className="grayscale dark:contrast-150" style={{ width: '80px' }} />
+          </div>
         </div>
       </header>
       <article>

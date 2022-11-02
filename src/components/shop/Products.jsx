@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
+import { formatCurrency } from '../../utils/helpers';
+
 export default function Products({ products }) {
   return (
     <div>
@@ -15,7 +17,7 @@ export default function Products({ products }) {
             <div>
               <h4><Link to={`/shop/${handle}`}>{title}</Link></h4>
               <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
-              <h5>{variants[0].price.amount.toString()}</h5>
+              <h5>{formatCurrency(variants[0].price.amount.toString())}</h5>
             </div>
           </li>
         ))} 

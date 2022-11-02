@@ -1,6 +1,6 @@
 @use 'gerillass' as *;
 @use '../config' as *;
-@use '../functions/gradients' as fng;
+@use '../functions' as *;
 
 html {
   font-size: var(--baseTextSize);

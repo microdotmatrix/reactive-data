@@ -2,15 +2,15 @@
   --load-bg-opacity: 0.0;
 }
 .loading {
-  display: 'flex';
-  position: 'absolute';
-  top: '0';
-  left: '0';
-  z-index: '999';
-  justify-content: 'center';
-  align-items: 'center';
-  width: '100vw';
-  height: '100vh';
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
   background: rgba(220, 220, 221, var(--load-bg-opacity));
   .spinner {
     /* Size */
