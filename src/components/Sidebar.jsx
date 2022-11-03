@@ -4,8 +4,7 @@ import { Icon } from '@iconify-icon/react';
 import Nav from '_c/Nav';
 
 export default function Sidebar() {
-  const { notes } = useLoaderData();
-
+  const { notes, menu } = useLoaderData();
   return (
     <div className="flex flex-col fixed">
       <Link to="/">
@@ -13,6 +12,7 @@ export default function Sidebar() {
           <Icon icon="brandico:wordpress" width="180px" />
         </h1>
       </Link>
+      
       <div className="py-3 my-6 border-t border-b border-slate-300 dark:border-slate-900">
         <Nav />
       </div>

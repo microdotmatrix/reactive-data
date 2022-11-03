@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { Link } from 'react-router-dom'
 import { useInView } from 'framer-motion'
 import { Icon } from '@iconify-icon/react';
 
@@ -21,6 +21,12 @@ export default function PostView({ post }) {
           <img src="https://unsplash.it/1600/1200?random&gravity=center" alt={title} className="w-full h-full object-cover absolute z-0" />  
         )}
         <div className='info py-4 px-12 z-10'>
+          <div className={css.categories}>
+            <Icon icon="mdi:cat" width="1.2em" />
+            {categories?.nodes.map(({ name }, index) => (
+              <span key={index}>{name}</span>
+            ))}
+          </div>
           <h2>{title}</h2>
           <div className={css.date}>
             <Icon icon="ph:calendar-duotone" width="25" />
@@ -28,16 +34,19 @@ export default function PostView({ post }) {
           </div>
           <div className={css.author}>by {name}</div>
           
-          <div className='tags'>
-            <Icon icon="ph:hash" inline={true} />:  
+          <div className={css.tags}>
+            <span style={{ opacity: 0, marginLeft: '-10px' }}>#</span>
             {tags?.nodes.map(({ name }, index) => (
               <>
-                <Icon icon="ph:tag-chevron-duotone" inline={true} /><span className={css.tag}>{name}</span>
+                <Link to={`/blog/tags/${name}`} key={index}>
+                  <Icon icon="ph:tag-chevron-duotone" inline={true} />
+                  <span className={css.tag}>{name}</span>
+                </Link>
               </>
             ))}
           </div>
           <div className={css.avatar}>
-            <img src={author?.node.avatar.url} alt={name} className="grayscale dark:contrast-150" style={{ width: '80px' }} />
+            <Link to={`/blog/${author?.node.nickname}`}><img src={author?.node.avatar.url} alt={name} className="grayscale dark:contrast-150" style={{ width: '80px' }} /></Link>
           </div>
         </div>
       </header>

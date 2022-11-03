@@ -12,7 +12,7 @@
   --text-xl: calc(var(--text-l) * var(--textSizeIncrement));
 
   --lineHeightFixedAmount: 0.35rem;
-  --lineHeightRelativeAmount: 1.1em;
+  --lineHeightRelativeAmount: 1.618;
   --globalLineHeight: calc(var(--lineHeightFixedAmount) + var(--lineHeightRelativeAmount));
 
   --fontFamily: Futura, sans-serif;

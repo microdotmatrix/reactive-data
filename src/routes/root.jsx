@@ -7,25 +7,38 @@ import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
 import { getNotes } from "../utils/notes";
 import { getCart } from '../utils/cart';
 import { ShopContext } from '../context/store';
+import { getSiteInfo, getNavMenu } from '../utils/api';
 
 import Sidebar from '../components/Sidebar';
 import DarkSwitch from '../components/DarkSwitch';
 
 const Cart = lazy(() => import('../components/Cart'));
 
+const SEO_OG_IMAGE_URL = null;
+
 export async function loader() {
   const cart = await getCart()
   const notes = await getNotes()
-  return { cart, notes };
+  const menu = await getNavMenu()
+  const wpInfo = await getSiteInfo()
+  return { cart, notes, menu, wpInfo };
 }
 
 export default function Root() {
-  let { cart, notes } = useLoaderData()
+  let { cart, notes, wpInfo, menu } = useLoaderData()
   let { openCart } = useContext(ShopContext)
   return (
     <>
       <Helmet>
-        <meta name="description" content="First project using the Data Router functions in React Router v6" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
+        <meta name="theme-color" content="#000" />
+        <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        <meta
+          name="description"
+          content={`Demo site using React Router v6.4 as a framework for data and routing with React 18.`}
+        />
+        <meta property="og:image" content={SEO_OG_IMAGE_URL} />
       </Helmet>
       <main className='relative flex w-full'>
         <aside className="relative py-8 justify-center flex flex-col items-center max-h-screen" style={{ flex: "2 0 0" }}>

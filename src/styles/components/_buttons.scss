@@ -1,5 +1,6 @@
 @use "sass:math";
 @use 'gerillass' as *;
+@use '@css/functions' as *;
 
 $hamburger-types: ( elastic );
 $hamburger-padding-x: 2rem;
@@ -13,6 +14,7 @@ button[type="submit"] {
   border-radius: 8px;
   outline: 1px solid var(--c-fieldBorder);
   padding: calc($space-e / 6) calc($space-pi / 3);
+  background: var(--c-border);
   font-size: $md;
   font-weight: 400;
   font-family: $oswald;
@@ -22,7 +24,9 @@ button[type="submit"] {
   cursor: pointer;
   transition: all 500ms ease;
   &:hover {
-    @apply shadow-md lg:shadow-lg xl:shadow-xl shadow-zinc-400/75 bg-slate-300/50 dark:bg-slate-800/50;  
+    color: var(--c-accent);
+    background: var(--c-accentContrasted);
+    @apply shadow-md lg:shadow-lg xl:shadow-xl shadow-zinc-400/75 dark:shadow-zinc-400/10;  
   }
   &:focus,
   &:focus-visible {

@@ -13,6 +13,7 @@ import Note, {
   loader as noteLoader,
   action as noteAction,
 } from "./routes/note";
+import { loader as homeLoader } from "./routes/home";
 import { loader as blogLoader } from "./routes/blog";
 import { loader as postLoader } from "./routes/blog/$slug";
 import { loader as shopLoader } from './routes/shop';
@@ -42,11 +43,13 @@ let router = createBrowserRouter([
     path: "/",
     element: <Root />,
     loader: rootLoader,
+    id: "root",
     errorElement: <ErrorBoundary />,
     children: [
       {
         // Home page element
         index: true,
+        loader: homeLoader,
         errorElement: <ErrorBoundary />,
         element: (
           <Suspense fallback={<Loading />}>

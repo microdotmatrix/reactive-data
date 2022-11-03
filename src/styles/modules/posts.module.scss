@@ -29,12 +29,22 @@
       opacity: 1;
       @include linear-gradient(left, (rgba(#43c6ac, 0.3) 0) (var(--c-background) 90%));
     }
+    .categories {
+      font-size: $sm;
+      font-family: $oswald;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #ccc;
+    }
     .title {
       font-size: $lg;
       letter-spacing: -0.04em;
     }
     .date {
-      font-size: $sm;
+      font-family: $smooch;
+      font-size: var(--base);
+      font-weight: 600;
       display: flex;
       gap: 0.5rem;
       color: var(--c-bodyDimmed);
@@ -56,11 +66,24 @@
         @include linear-gradient(right, var(--c-bodyDimmed) transparent);
       }
     }
+    .tags {
+      a[href],
+      a[href] span {
+        font-weight: 500;
+        transition: color 300ms ease;
+        &:hover {
+          color: var(--c-buttonBg);
+        }
+        &::after {
+          all: unset;
+        }
+      }
+    }
     .tag {
       margin-right: 1rem;
       margin-left: 0.25rem;
       color: var(--c-bodyDimmed);
-      font-size: 1.25em;
+      font-size: 1.2em;
       font-family: $smooch;
     }
   }
