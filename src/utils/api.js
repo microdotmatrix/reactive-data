@@ -22,7 +22,7 @@ const GET_POSTS = gql`
   query getPosts {
     posts (first: 100, where: {orderby: {field: DATE, order: DESC}}) {
       nodes {
-        id
+        postId
         date
         slug
         uri

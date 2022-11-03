@@ -53,7 +53,7 @@ const Cart = () => {
               <Icon icon="mdi:close" inline={true} width="40" />
             </button>
           </div>
-          <div className="flex flex-col p-6 w-full flex-1">
+          <div className="flex flex-col p-2 w-full flex-1">
             {checkout.lineItems?.length < 1 ? (
               <div className="cart-empty">Cart is Empty.</div>
             ) : (

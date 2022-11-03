@@ -7,14 +7,14 @@ import css from '@css/modules/posts.module.scss';
 export default function PostList({ posts }) {
   return (
     <div className={css.postList}>
-        {posts?.nodes.map(({ id, slug, title, excerpt, date, featuredImage, tags, categories, author }, index) => (
-          <Suspense fallback={"Loading post..."}>
-            <Section key={index} className='post__card flex flex-col items-stretch justify-start'>
-              <figure key={index} className={css.post__cover}>
+        {posts?.nodes.map(({ postId, slug, title, excerpt, date, featuredImage, tags, categories, author }, index) => (
+          <Suspense key={postId} fallback={"Loading post..."}>
+            <Section className='post__card flex flex-col items-stretch justify-start'>
+              <figure className={css.post__cover}>
                 {featuredImage?.node.sourceUrl ? (
                   <img src={featuredImage?.node.sourceUrl} alt={title} className="w-full h-full object-cover object-center opacity-70" />
                 ): (
-                  <img src="http://placeskull.com/1024/960/1f2731/17" alt={title} className="w-full h-full object-cover object-center opacity-70" />  
+                  <img src="https://placeskull.com/1024/960/1f2731/17" alt={title} className="w-full h-full object-cover object-center opacity-70" />  
                 )}
                 <figcaption className={css.meta}>
                   <h4 className='post__title'>

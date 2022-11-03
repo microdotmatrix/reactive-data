@@ -18,7 +18,7 @@ export default function PostView({ post }) {
         {featuredImage?.node.sourceUrl ? (
           <img src={featuredImage?.node.sourceUrl} alt={title} className="w-full h-full object-cover absolute z-0" />
         ): (
-          <img src="http://unsplash.it/1600/1200?random&gravity=center" alt={title} className="w-full h-full object-cover absolute z-0" />  
+          <img src="https://unsplash.it/1600/1200?random&gravity=center" alt={title} className="w-full h-full object-cover absolute z-0" />  
         )}
         <div className='info py-4 px-12 z-10'>
           <h2>{title}</h2>
@@ -36,7 +36,7 @@ export default function PostView({ post }) {
               </>
             ))}
           </div>
-          <div className='absolute left-2/3 lg:left-1/2 xl:left-[45%] bottom-2 rounded-full overflow-hidden border border-slate-600/30 z-10'>
+          <div className={css.avatar}>
             <img src={author?.node.avatar.url} alt={name} className="grayscale dark:contrast-150" style={{ width: '80px' }} />
           </div>
         </div>
