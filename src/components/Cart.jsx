@@ -85,7 +85,7 @@ const Cart = () => {
                       </div>
                       <div className="w-2/3 flex flex-col">
                         <div className="flex-1 text-xl lg:text-2xl xl:text-3xl font-semibold text-slate-600 nova-square">
-                          {item.title}
+                          {item.title} - {item.variant.title}
                         </div>
                         <div className="flex-auto text-xl md:text-2xl lg:text-4xl font-semibold text-gray-500 share-tech">
                           {formatCurrency(item.variant.price.amount)} <span className="text-sm text-gray-300 font-light">ea.</span>

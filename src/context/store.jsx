@@ -44,7 +44,7 @@ class ShopProvider extends Component {
       .catch((err) => console.log(err));
   };
 
-  async addItemToCheckout (variantId, quantity) {
+  async addItemToCheckout (checkoutId, variantId, quantity) {
     const lineItemsToAdd = [
       {
         variantId,
@@ -52,7 +52,7 @@ class ShopProvider extends Component {
       },
     ];
     const checkout = await client.checkout.addLineItems(
-      this.state.checkout.id,
+      checkoutId,
       lineItemsToAdd
     ).then(checkout => {
       this.setState({ checkout: checkout });
