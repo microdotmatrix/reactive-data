@@ -53,6 +53,7 @@ main {
 
 .container {
   @include adaptive(1.618rem);
+  margin-left: 0;
 }
 
 .loader {

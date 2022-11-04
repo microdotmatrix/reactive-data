@@ -51,6 +51,7 @@ const GET_POSTS = gql`
         author {
           node {
             name
+            slug
             firstName
             lastName
             email
@@ -116,6 +117,7 @@ const GET_POST = gql`
         lastName
         email
         nickname
+        slug
         avatar {
           url
         }

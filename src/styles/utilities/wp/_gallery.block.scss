@@ -1,0 +1,54 @@
+@use 'gerillass' as *;
+
+.is-layout-flex {
+  display: flex;
+  > * {
+    margin: 0;
+  }
+}
+
+.wp-block-gallery {
+  @include adaptive(3.618rem);
+  gap: var(--space-s);
+  &.has-nested-images {
+    flex-wrap: wrap;
+    figure.wp-block-image {
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      position: relative;
+      flex-direction: column;
+      max-width: 100%;
+      max-block-size: 300px;
+      @include breakpoint(min, large) {
+        max-block-size: 420px;
+      }
+      > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      > figcaption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+}
+
+.wp-block-gallery-3 {
+  @include columnizer(1);
+  @include breakpoint(min, large) {
+    @include columnizer(6, true);
+  }
+}
+
+.aligncenter {
+  justify-content: center;
+}
+
+.has-nested-images {
+  align-items: normal;
+}

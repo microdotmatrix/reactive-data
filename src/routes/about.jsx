@@ -2,7 +2,7 @@ import Content from '_c/Content';
 
 export default function About() {
   return (
-    <Content>
+    <Content className="container">
       <div className='about-content'>
         <h1 className="title">About...?</h1>
         <h3 className="sub-title">Not sure what this thing is even for, tbh.</h3>

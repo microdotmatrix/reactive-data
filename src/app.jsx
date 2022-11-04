@@ -43,7 +43,6 @@ let router = createBrowserRouter([
     path: "/",
     element: <Root />,
     loader: rootLoader,
-    id: "root",
     errorElement: <ErrorBoundary />,
     children: [
       {

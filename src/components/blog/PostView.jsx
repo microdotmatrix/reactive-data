@@ -36,9 +36,9 @@ export default function PostView({ post }) {
           
           <div className={css.tags}>
             <span style={{ opacity: 0, marginLeft: '-10px' }}>#</span>
-            {tags?.nodes.map(({ name }, index) => (
+            {tags?.nodes.map(({ name, slug }, index) => (
               <>
-                <Link to={`/blog/tags/${name}`} key={index}>
+                <Link to={`/blog/tags/${slug}`} key={index}>
                   <Icon icon="ph:tag-chevron-duotone" inline={true} />
                   <span className={css.tag}>{name}</span>
                 </Link>
@@ -46,7 +46,7 @@ export default function PostView({ post }) {
             ))}
           </div>
           <div className={css.avatar}>
-            <Link to={`/blog/${author?.node.nickname}`}><img src={author?.node.avatar.url} alt={name} className="grayscale dark:contrast-150" style={{ width: '80px' }} /></Link>
+            <Link to={`/users/${author?.node.slug}`}><img src={author?.node.avatar.url} alt={name} className="grayscale dark:contrast-150" style={{ width: '80px' }} /></Link>
           </div>
         </div>
       </header>

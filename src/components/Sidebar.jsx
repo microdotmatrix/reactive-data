@@ -6,26 +6,34 @@ import Nav from '_c/Nav';
 export default function Sidebar() {
   const { notes, menu } = useLoaderData();
   return (
-    <div className="flex flex-col fixed">
-      <Link to="/">
-        <h1>
-          <Icon icon="brandico:wordpress" width="180px" />
-        </h1>
-      </Link>
+    <div className="sidebar">
+      <section className="site-logo">
+        <Link to="/">
+          <Icon icon="simple-icons:saturn" width="240px" />
+        </Link>
+      </section>
       
-      <div className="py-3 my-6 border-t border-b border-slate-300 dark:border-slate-900">
+      <section className="site-nav">
         <Nav />
-      </div>
-      <p>
-        <Link to="new">Create Note</Link>
-      </p>
-      <ul>
-        {notes.map((note, index) => (
-          <li key={index}>
-            <Link to={`/note/${note.id}`}>{note.title}</Link>
-          </li>
-        ))}
-      </ul>
+      </section>
+
+      <section className="notes-block">
+        <div className="flex-1">
+          {notes?.length > 0 ? (
+            <ul>
+              {notes.map((note, index) => (
+                <li key={index}>
+                  <Link to={`/note/${note.id}`}>{note.title}</Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <span>No Notes Saved</span>
+          )}
+        </div>
+        
+        <button className="btn"><Link to="new">Create Note</Link></button>
+      </section>
     </div>
   )
 }

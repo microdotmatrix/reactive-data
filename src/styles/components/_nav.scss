@@ -1,4 +1,5 @@
-@use '../config' as *;
+@use '@css/config' as *;
+@use '@css/functions' as *;
 
 .site-menu {
   display: flex;
@@ -19,5 +20,40 @@
   @media (min-width: $xlarge) {
     flex-flow: row nowrap;
     justify-content: space-between;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  .site-logo {
+    text-align: center;
+  }
+  .site-nav {
+    padding: var(--space-s) 0;
+    margin: var(--space-m) auto;
+    border-top: 1px solid slate(3);
+    border-bottom: 1px solid slate(3);
+    @apply dark:border-slate-900;
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2vh;
+      > a {
+        font-family: $smooch;
+        font-size: $lg;
+        font-weight: 500;
+        letter-spacing: 0.063vw;
+      }
+    }
+  }
+  .notes-block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    padding: var(--space-m) 0;
   }
 }

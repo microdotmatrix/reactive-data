@@ -1,8 +1,9 @@
 .contact {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
   @apply w-full lg:w-3/4 2xl:w-2/3;
-  .block {
+  section {
     margin: 1rem 0;
   }
 }
