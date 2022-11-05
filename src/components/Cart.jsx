@@ -38,7 +38,7 @@ const Cart = () => {
         animate={isCartOpen ? "open" : "closed"}
         variants={{
           open: {
-            width: "33%",
+            width: "36%",
           },
           closed: {
             width: 0,
@@ -60,9 +60,9 @@ const Cart = () => {
               <>
                 {checkout.lineItems?.map((item, index) => (
                   <div className="flex flex-col" key={index}>
-                    <div className="flex flex-row gap-4">
+                    <div className="flex flex-row">
                       <div className="w-1/3">
-                        <figure className="w-full max-h-[300px] flex relative overflow-clip">
+                        <figure className="w-full flex relative overflow-clip" style={{ blockSize: '160px' }}>
                           <img
                             src={item.variant.image.src}
                             alt={item.title}
@@ -74,31 +74,40 @@ const Cart = () => {
                           />
                           <figcaption className="absolute bottom-2 right-2">
                             <button
-                              onClick={() =>
-                                removeItemFromCheckout(item.id, item.quantity)
-                              }
+                              onClick={() => removeItemFromCheckout(item.id, item.quantity)}
                             >
-                              <Icon icon="mdi:trash-can" width="30" />
+                              <Icon icon="carbon:trash-can" width="30" />
                             </button>
                           </figcaption>
                         </figure>
                       </div>
-                      <div className="w-2/3 flex flex-col">
-                        <div className="flex-1 text-xl lg:text-2xl xl:text-3xl font-semibold text-slate-600 nova-square">
-                          {item.title} - {item.variant.title}
+                      <div className="w-2/3 flex flex-col px-4">
+                        <div className="flex-1 font-semibold text-slate-600 smooch-sans">
+                          <span className="text-xl lg:text-2xl xl:text-3xl">
+                            {item.title}
+                          </span>
+                          <span> - </span>
+                          <span className="text-md lg:text-xl xl:text-xl">
+                            {item.variant.title}
+                          </span>
                         </div>
-                        <div className="flex-auto text-xl md:text-2xl lg:text-4xl font-semibold text-gray-500 share-tech">
+                        <div className="flex-auto text-xl md:text-2xl lg:text-3xl font-semibold text-gray-500 oswald">
                           {formatCurrency(item.variant.price.amount)} <span className="text-sm text-gray-300 font-light">ea.</span>
                         </div>
-                        <div className="flex flex-row justify-between">
-                          <label htmlFor="quantity">Qty:</label>
-                          <div className="grid grid-cols-3 gap-4">
-                            <button className="btn-inc" onClick={() => updateQuantityInCheckout(item.id, item.quantity -1)}> - </button>
-                            <div className="text-lg text-center">{item.quantity}</div>
-                            <button className="btn-inc" onClick={() => updateQuantityInCheckout(item.id, item.quantity +1)}> + </button>
+                        <div className="flex flex-col items-start">
+                          <label htmlFor="quantity" className="text-sm">Qty:</label>
+                          <div className="flex flex-row gap-1">
+                            <button className="border border-slate-200/20 rounded-md my-auto flex items-center justify-center p-2" onClick={() => updateQuantityInCheckout(item.id, item.quantity - 1)}>
+                              <Icon icon="carbon:subtract" width="18" />
+                            </button>
+                            <div className="text-xl text-center font-semibold flex items-center justify-center py-2 px-4">
+                              {item.quantity}
+                            </div>
+                            <button className="border border-slate-200/20 rounded-md my-auto flex items-center justify-center p-2" onClick={() => updateQuantityInCheckout(item.id, item.quantity + 1)}>
+                              <Icon icon="carbon:add" width="18" />
+                            </button>
                           </div>
                         </div>
-                        
                       </div>
                     </div>
                   </div>
@@ -108,7 +117,7 @@ const Cart = () => {
           </div>
           <div className="flex flex-col">
             <a href={checkout.webUrl} rel="noopener noreferrer">
-              <button className="w-full px-8 py-6 bg-slate-400">
+              <button className="w-full px-8 py-6 btn t">
                 Checkout
               </button>
             </a>

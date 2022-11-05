@@ -22,7 +22,7 @@ export default function Home() {
         <img src={featuredImage.node.sourceUrl} alt={featuredImage.altText} />
       </header>
       <Content className="container">
-        <div className="home-content">
+        <div className={css.content}>
           <h3 className="sub-title">This is the home page...</h3>
           <p>There are many like it, but this one is mine.</p>
           <div dangerouslySetInnerHTML={{ __html: content }} />

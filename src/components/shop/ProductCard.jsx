@@ -3,8 +3,6 @@ import { ShopContext } from "../../context/store";
 
 import { formatCurrency } from "../../utils/helpers";
 
-const Thumbnails = lazy(() => import('./ProductImages'));
-
 export default function ProductCard({ product, optionSelect }) {
   const { addItemToCheckout } = useContext(ShopContext);
   const [quantity, setQuantity] = useState(1);
@@ -29,10 +27,10 @@ export default function ProductCard({ product, optionSelect }) {
     // update variant
     setVariant(selectedVariant);
     setPrimaryImage(selectedVariantImg);
-    setVariantPrice(selectedVariantPrice)
+    setVariantPrice(selectedVariantPrice);
   }
   
-  const price = product.variants[0].price.amount;
+  const price = variantPrice;
 
   return (
     <div className="w-full mx-auto">
@@ -59,15 +57,15 @@ export default function ProductCard({ product, optionSelect }) {
             <button
               className="btn"
               onClick={() =>
-                addItemToCheckout(product.variants[0].id.toString(), 1)
+                addItemToCheckout(variantId.toString(), 1)
               }
             >
               Add to Cart
             </button>
           </div>
         </div>
-        <div className="product__images order-1 md:order-2 grid grid-cols-3 gap-2">
-          <div className="col-span-3">
+        <div className="product__images order-1 md:order-2 flex flex-col gap-2">
+          <div className="flex-1">
             <img
               src={primaryImage.toString()}
               className="w-full object-cover"
@@ -76,10 +74,20 @@ export default function ProductCard({ product, optionSelect }) {
           </div>
           
           {product.images.length > 1 ? (
-            <div className="thumbnails">
-              <Suspense fallback={"Loading images..."}>
-                <Thumbnails product={product} />
-              </Suspense>
+            <div className="thumbnails flex flex-row w-full">
+              {product.images.map((image, index) => (
+                <button
+                  className="flex-1"
+                  key={index}
+                  onClick={() => setPrimaryImage(image.src.toString())}
+                >
+                  <img
+                    src={image.src.toString()}
+                    className="w-full h-full object-cover"
+                    alt={product.title}
+                  />
+                </button>
+              ))}
             </div>
           ): (
             <span className="hidden">Only one image.</span>
