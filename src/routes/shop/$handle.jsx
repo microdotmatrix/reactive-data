@@ -14,11 +14,12 @@ export default function Product() {
   let handle = useParams();
   let product = useLoaderData();
   const optionSelect = product.variants.map((item, index) => {
+    let variantId = item.id;
     return (
       <option
         id={item.id}
         key={item.id}
-        value={item.id}
+        value={variantId}
       >
         {item.title}
       </option>
@@ -34,7 +35,7 @@ export default function Product() {
   }
   return (
     <Content>
-      <Suspense fallback={"Loading product info..."}>
+      <Suspense key={product.id} fallback={"Loading product info..."}>
         <ProductCard product={product} handle={handle} optionSelect={optionSelect} />
       </Suspense>
     </Content>

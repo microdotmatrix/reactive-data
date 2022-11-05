@@ -1,6 +1,9 @@
+@use '@css/config' as *;
+@use '@css/functions' as *;
+
 .hero {
   width: 100%;
-  height: 75vh;
+  height: 40vh;
   overflow: hidden;
   position: absolute;
   top: 0;
@@ -14,5 +17,15 @@
     position: absolute;
     right: 0;
     transform: rotate(0.5turn);
+  }
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: gradient(subtle-grey);
+    position: absolute;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    background-blend-mode: color-dodge;
   }
 }

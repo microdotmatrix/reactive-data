@@ -41,10 +41,10 @@ export default function Root() {
         <meta property="og:image" content={SEO_OG_IMAGE_URL} />
       </Helmet>
       <main className='relative flex w-full'>
-        <aside className="relative py-8 justify-center flex flex-col items-center max-h-screen" style={{ flex: "2 0 0" }}>
+        <aside className="relative py-8 justify-center flex flex-col items-center max-h-screen" style={{ flex: "4 0 0" }}>
           <Sidebar />
         </aside>
-        <article id="content" className="flex flex-col h-full min-h-screen justify-center border-l border-l-slate-300 dark:border-l-zinc-900  px-12 pt-4 pb-6" style={{ flex: "6 0 0", height: "auto", margin: "auto" }}>
+        <article id="content" className="flex flex-col h-full min-h-screen justify-center border-l border-l-slate-300 dark:border-l-zinc-900  px-12 pt-4 pb-6" style={{ flex: "8 0 0", height: "auto", margin: "auto" }}>
           <AnimatePresence mode="wait">
             <Outlet />
           </AnimatePresence>
