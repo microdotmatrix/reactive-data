@@ -229,17 +229,10 @@ const SITE_INFO = gql`
 
 const GET_MENU = gql`
   query getMenu {
-    menu(id: "dGVybTo0Nw==", idType: ID) {
-      name
-      slug
-      locations
-      id
-      menuItems {
-        nodes {
-          title
-          path
-          label
-        }
+    menuItems(where: {location: PRIMARY}) {
+      nodes {
+        label
+        path
       }
     }
   }

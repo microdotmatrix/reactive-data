@@ -24,8 +24,8 @@ export async function loader() {
   return { cart, notes, menu, wpInfo };
 }
 
-export default function Root() {
-  let { cart, notes, wpInfo, menu } = useLoaderData()
+export default function Root({children}) {
+  let { cart, notes, wpInfo, menu } = loader()
   let { openCart } = useContext(ShopContext)
   return (
     <>
@@ -40,9 +40,10 @@ export default function Root() {
         />
         <meta property="og:image" content={SEO_OG_IMAGE_URL} />
       </Helmet>
+      
       <main className='relative flex w-full'>
         <aside className="relative py-8 justify-center flex flex-col items-center max-h-screen" style={{ flex: "4 0 0" }}>
-          <Sidebar />
+          <Sidebar menu={menu} />
         </aside>
         <article id="content" className="flex flex-col h-full min-h-screen justify-center border-l border-l-slate-300 dark:border-l-zinc-900  px-12 pt-4 pb-6" style={{ flex: "8 0 0", height: "auto", margin: "auto" }}>
           <AnimatePresence mode="wait">

@@ -3,8 +3,8 @@ import { Icon } from '@iconify-icon/react';
 
 import Nav from '_c/Nav';
 
-export default function Sidebar() {
-  const { notes, menu } = useLoaderData();
+export default function Sidebar({ menu }) {
+  const notes = useLoaderData();
   return (
     <div className="sidebar">
       <section className="site-logo">
@@ -14,7 +14,7 @@ export default function Sidebar() {
       </section>
       
       <section className="site-nav">
-        <Nav />
+        <Nav menu={menu} />
       </section>
 
       <section className="notes-block">
@@ -32,7 +32,7 @@ export default function Sidebar() {
           )}
         </div>
         
-        <button className="btn"><Link to="new">Create Note</Link></button>
+        <button className="btn"><Link to="/new">Create Note</Link></button>
       </section>
     </div>
   )

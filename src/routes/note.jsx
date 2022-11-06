@@ -1,5 +1,5 @@
 import { useLoaderData, Form, redirect } from "react-router-dom";
-import { deleteNote, getNote } from "../notes";
+import { deleteNote, getNote } from "_u/notes";
 
 export default function Note() {
   const note = useLoaderData();
