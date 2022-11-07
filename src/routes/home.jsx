@@ -1,22 +1,16 @@
 import css from '@css/modules/home.module.scss';
 import { Link, useLoaderData } from 'react-router-dom';
-import { getHomePage } from '_u/api'
 
 import Content from '_c/Content';
 import Helmet from 'react-helmet';
 
-export async function loader() {
-  return await getHomePage()
-}
-
 export default function Home() {
-  let page = useLoaderData();
-  const { content, date, tags, author, featuredImage } = page;
+  const { title, content, date, tags, author, featuredImage } = useLoaderData();
   
   return (
     <>
       <Helmet>
-        <title>fuck it</title>
+        <title>{title}</title>
       </Helmet> 
       <header className={css.hero}>
         <img src={featuredImage.node.sourceUrl} alt={featuredImage.altText} />

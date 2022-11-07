@@ -137,56 +137,44 @@ export async function getPost({ slug }) {
   }
 }
 
-async function fakeNetwork() {
+export async function fakeNetwork() {
   return new Promise((res) => {
     setTimeout(res, Math.random() * 800);
   });
 }
 
-const homePage = gql`
-  query goHome($slug: String!) {
-    pageBy(slug: $slug) {
-      id
-      slug
-      ...PageFragment
-    }
-  }
-  fragment PageFragment on Page {
-    date
-    title
-    content
-    featuredImage {
-      node {
-        sourceUrl
-        title
-        sizes
-        description
-        caption
-        altText
-      }
-    }
-    tags(first: 10) {
-      nodes {
-        name
-      }
-    }
-    author {
-      node {
-        name
-        firstName
-        lastName
-        email
-        nickname
-        avatar {
-          url
+const GET_PAGE = gql`
+  query getAboutPage {
+    pageBy(uri: "about") {
+      date
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+          description
         }
       }
+      slug
+      pageId
+      content
+      id
     }
   }
 `
 
+export async function getAboutPage() {
+  try {
+    let data = await graphql.request(GET_PAGE, {});
+    return json(data.pageBy);
+  } catch (error) {
+    if (is404(error)) return
+    throw error.message
+  }
+}
+
 const GET_HOME = gql`
-  query getPage {
+  query getHomePage {
     pageBy(uri: "home") {
       date
       featuredImage {

@@ -2,12 +2,11 @@ import { lazy, Suspense, useContext } from 'react'
 import { useLoaderData, Link, Outlet } from "react-router-dom";
 import Helmet from 'react-helmet';
 import { Icon } from '@iconify-icon/react'
-import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 import { getNotes } from "../utils/notes";
 import { getCart } from '../utils/cart';
 import { ShopContext } from '../context/store';
-import { getSiteInfo, getNavMenu } from '../utils/api';
 
 import Sidebar from '../components/Sidebar';
 import DarkSwitch from '../components/DarkSwitch';
@@ -19,13 +18,11 @@ const SEO_OG_IMAGE_URL = null;
 export async function loader() {
   const cart = await getCart()
   const notes = await getNotes()
-  const menu = await getNavMenu()
-  const wpInfo = await getSiteInfo()
-  return { cart, notes, menu, wpInfo };
+  return { cart, notes };
 }
 
-export default function Root({children}) {
-  let { cart, notes, wpInfo, menu } = loader()
+export default function Root() {
+  let { cart, notes } = useLoaderData()
   let { openCart } = useContext(ShopContext)
   return (
     <>
@@ -43,7 +40,7 @@ export default function Root({children}) {
       
       <main className='relative flex w-full'>
         <aside className="relative py-8 justify-center flex flex-col items-center max-h-screen" style={{ flex: "4 0 0" }}>
-          <Sidebar menu={menu} />
+          <Sidebar />
         </aside>
         <article id="content" className="flex flex-col h-full min-h-screen justify-center border-l border-l-slate-300 dark:border-l-zinc-900  px-12 pt-4 pb-6" style={{ flex: "8 0 0", height: "auto", margin: "auto" }}>
           <AnimatePresence mode="wait">

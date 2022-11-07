@@ -7,27 +7,30 @@ import { Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider, useRouteError } from "react-router-dom";
 
 // Synchronous route and loader elements
-import Root, { loader as rootLoader } from "_r/root";
-import NewNote, { action as newNoteAction } from "_r/new";
+import Root, { loader as rootLoader } from "./routes/root";
+import NewNote, { action as newNoteAction } from "./routes/notes/new";
 import Note, {
   loader as noteLoader,
   action as noteAction,
-} from "_r/note";
-import { loader as homeLoader } from "_r/home";
-import { loader as blogLoader } from "_r/blog";
-import { loader as postLoader } from "_r/blog/$slug";
-import { loader as shopLoader } from '_r/shop';
-import { loader as productLoader } from '_r/shop/$handle'
-import Contact from '_r/contact';
-import Error from '_r/404';
+} from "./routes/notes/note";
+
+import { getHomePage, getAboutPage, sleep } from './utils/api';
+
+import { loader as blogLoader } from "./routes/blog";
+import { loader as postLoader } from "./routes/blog/$slug";
+import { loader as shopLoader } from './routes/shop';
+import { loader as productLoader } from './routes/shop/$handle'
+import Contact from './routes/contact';
+import Error from './routes/404';
+import Home from './routes/home';
 
 // Asynchronous route elements, lazy loaded with dynamic import for route based code splitting
-const Home = lazy(() => import('_r/home'));
-const About = lazy(() => import('_r/about'));
-const Blog = lazy(() => import('_r/blog'));
-const Post = lazy(() => import('_r/blog/$slug'));
-const Shop = lazy(() => import('_r/shop'));
-const Product = lazy(() => import('_r/shop/$handle'));
+// const Home = lazy(() => import('./routes/home'));
+const About = lazy(() => import('./routes/about'));
+const Blog = lazy(() => import('./routes/blog'));
+const Post = lazy(() => import('./routes/blog/$slug'));
+const Shop = lazy(() => import('./routes/shop'));
+const Product = lazy(() => import('./routes/shop/$handle'));
 
 // Page loading fallback element and Shop Context Provider
 import Loading from './components/Loading';
@@ -37,6 +40,8 @@ import ShopProvider from "./context/store";
 // Paths defining route url structures, errorElements to handle Error Boundary responses
 // Loaders used for route-specific dynamic data fetching and loading
 // Actions control route-specific dynamic data submission handling
+
+
 let router = createBrowserRouter([
   {
     // Root element loads as parent route wrapping the site's pages in a global layout and context loader
@@ -48,21 +53,32 @@ let router = createBrowserRouter([
       {
         // Home page element
         index: true,
-        loader: homeLoader,
+        loader: 
+          async () => {
+            const page = await getHomePage()
+            if (!page) {
+              throw <Error />
+            }
+            return page;
+          },
         errorElement: <ErrorBoundary />,
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Home />
-          </Suspense>
-        )
+        element: <Home />
       },
       {
         // About page element
         path: "/about",
-        loader: rootLoader,
+        loader:
+          async () => {
+            const page = await getAboutPage()
+            if (!page) {
+              throw <Error />
+            }
+            return page;
+          }
+        ,
         errorElement: <ErrorBoundary />,
         element: (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loading />}> 
             <About />
           </Suspense>
         )

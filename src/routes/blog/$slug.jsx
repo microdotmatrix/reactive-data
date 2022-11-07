@@ -16,15 +16,18 @@ export async function loader({ params }) {
 export default function Post() {
   let post = useLoaderData();
   let slug = useParams();
+  
   return (
-    <Content>
+    <>
       <Helmet>
         <title>{post.title}</title>
         <meta name="description" content={post.excerpt} />
       </Helmet>
-      <Suspense fallback={<Loading />}>
-        <PostView post={post} slug={slug} />
-      </Suspense>
-    </Content>
+      <Content>
+        <Suspense fallback={<Loading />}>
+          <PostView key={post.slug} post={post} slug={slug} />
+        </Suspense>
+      </Content>
+    </>
   )
 }
