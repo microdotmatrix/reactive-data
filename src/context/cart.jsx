@@ -2,22 +2,28 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import { setLocalData, saveLocalData } from '../utils/helpers'
 import { client } from '../utils/shopify'
 
+// Create context functions for Cart, Add to Cart and Modifying cart quantities.
 const CartContext = createContext()
 const AddToCartContext = createContext()
 const UpdateCartQuantityContext = createContext()
 
+
+// Custom hook for using Cart Context
 export function useCartContext() {
   return useContext(CartContext)
 }
 
+// Custom hook for Add to Cart Context
 export function useAddToCartContext() {
   return useContext(AddToCartContext)
 }
 
+// Custom hook for updating cart quantities
 export function useUpdateCartQuantityContext() {
   return useContext(UpdateCartQuantityContext)
 }
 
+// Create accessible context provider for loading cart context globally
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([])
   const [checkoutId, setCheckoutId] = useState('')

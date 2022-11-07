@@ -13,6 +13,7 @@ export async function loader({ params }) {
 export default function Product() {
   let handle = useParams();
   let product = useLoaderData();
+  
   const optionSelect = product.variants.map((item, index) => {
     let variantId = item.id;
     return (
@@ -25,6 +26,7 @@ export default function Product() {
       </option>
     )
   })
+
   if (!product) {
     return (
       <div className='w-full h-full flex flex-col items-center'>

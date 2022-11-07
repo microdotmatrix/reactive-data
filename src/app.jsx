@@ -8,21 +8,24 @@ import { createBrowserRouter, RouterProvider, useRouteError } from "react-router
 
 // Synchronous route and loader elements
 import Root, { loader as rootLoader } from "./routes/root";
-import NewNote, { action as newNoteAction } from "./routes/new";
+import NewNote, { action as newNoteAction } from "./routes/notes/new";
 import Note, {
   loader as noteLoader,
   action as noteAction,
-} from "./routes/note";
-import { loader as homeLoader } from "./routes/home";
+} from "./routes/notes/note";
+
+import { getHomePage, getAboutPage, sleep } from './utils/api';
+
 import { loader as blogLoader } from "./routes/blog";
 import { loader as postLoader } from "./routes/blog/$slug";
 import { loader as shopLoader } from './routes/shop';
 import { loader as productLoader } from './routes/shop/$handle'
 import Contact from './routes/contact';
 import Error from './routes/404';
+import Home from './routes/home';
 
-// Asynchronous route elements
-const Home = lazy(() => import('./routes/home'));
+// Asynchronous route elements, lazy loaded with dynamic import for route based code splitting
+// const Home = lazy(() => import('./routes/home'));
 const About = lazy(() => import('./routes/about'));
 const Blog = lazy(() => import('./routes/blog'));
 const Post = lazy(() => import('./routes/blog/$slug'));
@@ -37,6 +40,8 @@ import ShopProvider from "./context/store";
 // Paths defining route url structures, errorElements to handle Error Boundary responses
 // Loaders used for route-specific dynamic data fetching and loading
 // Actions control route-specific dynamic data submission handling
+
+
 let router = createBrowserRouter([
   {
     // Root element loads as parent route wrapping the site's pages in a global layout and context loader
@@ -48,27 +53,39 @@ let router = createBrowserRouter([
       {
         // Home page element
         index: true,
-        loader: homeLoader,
+        loader: 
+          async () => {
+            const page = await getHomePage()
+            if (!page) {
+              throw <Error />
+            }
+            return page;
+          },
         errorElement: <ErrorBoundary />,
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Home />
-          </Suspense>
-        )
+        element: <Home />
       },
       {
         // About page element
-        path: "about",
+        path: "/about",
+        loader:
+          async () => {
+            const page = await getAboutPage()
+            if (!page) {
+              throw <Error />
+            }
+            return page;
+          }
+        ,
         errorElement: <ErrorBoundary />,
         element: (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loading />}> 
             <About />
           </Suspense>
         )
       },
       {
         // Blog page element, loader function fetching data from WordPress API using GraphQL
-        path: "blog",
+        path: "/blog",
         loader: blogLoader,
         errorElement: <ErrorBoundary />,
         element: (
@@ -79,7 +96,7 @@ let router = createBrowserRouter([
       },
       {
         // Dynamic route for viewing individual post loaded from WordPress API
-        path: "blog/:slug",
+        path: "/blog/:slug",
         loader: postLoader,
         errorElement: <ErrorBoundary />,
         element: (
@@ -90,7 +107,7 @@ let router = createBrowserRouter([
       },
       {
         // Shop page element, loader function fetching data from Shopify Storefront API
-        path: "shop",
+        path: "/shop",
         loader: shopLoader,
         errorElement: <ErrorBoundary />,
         element: (
@@ -101,7 +118,7 @@ let router = createBrowserRouter([
       },
       {
         // Dynamic route for viewing individual product details loaded from Shopify API
-        path: "shop/:handle",
+        path: "/shop/:handle",
         loader: productLoader,
         errorElement: <ErrorBoundary />,
         element: (
@@ -113,20 +130,20 @@ let router = createBrowserRouter([
       {
         // Contact page element
         // TODO: Add route action for handling email form submission
-        path: "contact",
+        path: "/contact",
         element: <Contact />
       },
       {
         // Create note function for submitting input data to local cache storage
         // Kept from original example repo forked from Remix-Run/React-Router
-        path: "new",
+        path: "/new",
         element: <NewNote />,
         action: newNoteAction,
       },
       {
         // Dynamic route for viewing individual notes loaded from local storage cache
         // Kept from original example repo forked from Remix-Run/React-Router
-        path: "note/:noteId",
+        path: "/note/:noteId",
         element: <Note />,
         loader: noteLoader,
         action: noteAction,

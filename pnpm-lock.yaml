@@ -27,6 +27,7 @@ specifiers:
   tailwindcss: ^3.2.1
   typescript: 4.6.4
   vite: 3.1.8
+  vite-plugin-dynamic-import: ^1.2.3
   vite-plugin-mkcert: ^1.10.1
   vite-plugin-webfont-dl: ^3.4.0
 
@@ -59,6 +60,7 @@ devDependencies:
   tailwindcss: 3.2.1_postcss@8.4.18
   typescript: 4.6.4
   vite: 3.1.8_sass@1.55.0
+  vite-plugin-dynamic-import: 1.2.3
   vite-plugin-mkcert: 1.10.1_vite@3.1.8
   vite-plugin-webfont-dl: 3.4.0_vite@3.1.8
 
@@ -4206,6 +4208,12 @@ packages:
       '@types/istanbul-lib-coverage': 2.0.4
       convert-source-map: 1.9.0
       source-map: 0.7.4
+    dev: true
+
+  /vite-plugin-dynamic-import/1.2.3:
+    resolution: {integrity: sha512-+TBAF9f8aYHkYnA53A/mWm4Fe+xgVYebF6eNm3ILx2w9fVz7intqsP+PFPnVg7jzM9SJxUx5q31HLdA7YGTw+Q==}
+    dependencies:
+      fast-glob: 3.2.12
     dev: true
 
   /vite-plugin-mkcert/1.10.1_vite@3.1.8:

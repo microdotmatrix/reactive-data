@@ -21,11 +21,12 @@ export const pageTransition = {
   },
   exit: {
     scale: 0.5,
+    rotate: 90,
     y: '30px',
     opacity: 0,
     transition: {
       delay: 0,
-      duration: 0.75
+      duration: 1.5
     }
   },
   transition: {

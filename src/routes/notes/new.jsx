@@ -1,5 +1,5 @@
 import { Form, redirect } from "react-router-dom";
-import { createNote } from "../notes";
+import { createNote } from "_u/notes";
 
 ////////////////////////////////////////////////////////////////////////////////
 export default function NewNote() {

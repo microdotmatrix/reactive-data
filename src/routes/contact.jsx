@@ -1,11 +1,15 @@
 import css from '@css/modules/contact.module.scss';
 
 import { Form } from "react-router-dom";
+import { usePageEffect } from '_h/page';
+
 import Content from '_c/Content';
 
 
 export default function Contact() {
   return (
+    usePageEffect({ title: "Dont Contact Me..." }),
+    
     <Content className="container">
       <Form method="post" action="/contact" className={css.contact}>
         <section>

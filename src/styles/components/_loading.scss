@@ -1,3 +1,5 @@
+@use '@css/config' as *;
+
 :root { 
   --load-bg-opacity: 0.0;
 }
@@ -11,7 +13,7 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: rgba(220, 220, 221, var(--load-bg-opacity));
+  background: var(--c-background);
   .spinner {
     /* Size */
     height: 8rem;
@@ -32,7 +34,7 @@
       transform: rotate(0deg);
   }
   to {
-      --load-bg-opacity: 1
+      --load-bg-opacity: 1;
       transform: rotate(360deg);
   }
 }

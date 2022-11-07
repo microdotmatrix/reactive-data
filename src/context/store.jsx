@@ -44,16 +44,14 @@ class ShopProvider extends Component {
       .catch((err) => console.log(err));
   };
 
-  async addItemToCheckout (checkoutId, variantId, quantity) {
-    const lineItemsToAdd = [
-      {
-        variantId,
-        quantity: parseInt(quantity, 10),
-      },
-    ];
+  async addItemToCheckout (variantId, quantity) {
+    const lineItemsToAdd = {
+      variantId,
+      quantity: parseInt(quantity, 10),
+    };
     const checkout = await client.checkout.addLineItems(
-      checkoutId,
-      lineItemsToAdd
+      this.state.checkout.id,
+      [lineItemsToAdd]
     ).then(checkout => {
       this.setState({ checkout: checkout });
     });
@@ -93,12 +91,12 @@ class ShopProvider extends Component {
     return Math.round(totalPrice * 100) / 100
   }
 
-  fetchAllProducts = async () => {
+  async fetchAllProducts() {
     const products = await client.product.fetchAll();
     this.setState({ products: products });
   };
 
-  fetchProductWithId = async (id) => {
+  async fetchProductWithId() {
     const product = await client.product.fetch(id);
     this.setState({ product: product });
     // console.log(JSON.stringify(product));
@@ -106,7 +104,7 @@ class ShopProvider extends Component {
     return product;
   };
 
-  fetchProductWithHandle = async (handle) => {
+  async fetchProductWithHandle() {
     const product = await client.product.fetchByHandle(handle);
     this.setState({ product: product });
     // console.log(JSON.stringify(product));
