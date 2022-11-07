@@ -1,5 +1,5 @@
-import { lazy, Suspense, useContext } from 'react'
-import { useLoaderData, Link, Outlet } from "react-router-dom";
+import { lazy, Suspense, useContext, useState, useEffect } from 'react'
+import { useLoaderData, Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import Helmet from 'react-helmet';
 import { Icon } from '@iconify-icon/react'
 import { AnimatePresence } from 'framer-motion';
@@ -24,6 +24,11 @@ export async function loader() {
 export default function Root() {
   let { cart, notes } = useLoaderData()
   let { openCart } = useContext(ShopContext)
+  const [isFirstMount, setIsFirstMount] = useState(true);
+  const location = useLocation();
+  const history = useNavigate();
+
+  
   return (
     <>
       <Helmet>
@@ -44,7 +49,9 @@ export default function Root() {
         </aside>
         <article id="content" className="flex flex-col h-full min-h-screen justify-center border-l border-l-slate-300 dark:border-l-zinc-900  px-12 pt-4 pb-6" style={{ flex: "8 0 0", height: "auto", margin: "auto" }}>
           <AnimatePresence mode="wait">
-            <Outlet />
+            <RouteFrame location={location} key={location.pathname}>
+              <Outlet isFirstMount={isFirstMount} />
+            </RouteFrame>
           </AnimatePresence>
         </article>
       </main>
@@ -63,4 +70,10 @@ export default function Root() {
       </Suspense>
     </>
   );
+}
+
+function RouteFrame({ children }) {
+  return (
+    <>{children}</>
+  )
 }
