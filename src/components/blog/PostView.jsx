@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
-import { useInView } from 'framer-motion'
+import { Link, useAsyncValue } from 'react-router-dom'
 import { Icon } from '@iconify-icon/react';
 
 import css from '@css/modules/posts.module.scss'
 
 export default function PostView({ post }) {
-  let { title, date, content, featuredImage, author, tags, categories } = post;
+  let { title, date, content, featuredImage, author, tags, categories } = useAsyncValue();
+
   const name = author
     ? author.node.firstName && author.node.lastName
       ? `${author.node.firstName} ${author.node.lastName}`
