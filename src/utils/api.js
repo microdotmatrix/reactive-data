@@ -14,7 +14,9 @@ export function sleep(n = 500) {
 const graphql = new GraphQLClient(import.meta.env.VITE_WP_URL, {
   headers: {
     "Content-Type": "application/json"
-  }
+  },
+  credentials: 'same-origin',
+  cache: 'force-cache'
 });
 
 // GraphQL query posts
@@ -68,6 +70,7 @@ const GET_POSTS = gql`
 
 // Fetching posts from WordPress
 export const getPosts = async () => {
+  await sleep(1400);
   try {
     let data = await graphql.request(GET_POSTS, {});
     return json(data.posts);
@@ -143,10 +146,15 @@ export async function fakeNetwork() {
   });
 }
 
-const GET_PAGE = gql`
-  query getAboutPage {
+const GET_ABOUT = gql`
+  query getAbout {
     pageBy(uri: "about") {
+      id
+      pageId
+      slug
+      title
       date
+      content
       featuredImage {
         node {
           sourceUrl
@@ -155,17 +163,13 @@ const GET_PAGE = gql`
           description
         }
       }
-      slug
-      pageId
-      content
-      id
     }
   }
 `
 
 export async function getAboutPage() {
   try {
-    let data = await graphql.request(GET_PAGE, {});
+    let data = await graphql.request(GET_ABOUT, {});
     return json(data.pageBy);
   } catch (error) {
     if (is404(error)) return

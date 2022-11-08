@@ -2,7 +2,6 @@ import React, { lazy, Suspense } from 'react'
 import { useParams, useLoaderData } from 'react-router-dom'; 
 import { client } from '../../context/store';
 
-import Content from '_c/Content'
 const ProductCard = lazy(() => import('_c/shop/ProductCard'));
 
 export async function loader({ params }) {
@@ -36,10 +35,8 @@ export default function Product() {
     )
   }
   return (
-    <Content>
-      <Suspense key={product.id} fallback={"Loading product info..."}>
-        <ProductCard product={product} handle={handle} optionSelect={optionSelect} />
-      </Suspense>
-    </Content>
+    <Suspense key={product.id} fallback={"Loading product info..."}>
+      <ProductCard product={product} handle={handle} optionSelect={optionSelect} />
+    </Suspense>
   )
 }

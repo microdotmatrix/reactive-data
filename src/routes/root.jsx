@@ -2,7 +2,6 @@ import { lazy, Suspense, useContext } from 'react'
 import { useLoaderData, Link, Outlet } from "react-router-dom";
 import Helmet from 'react-helmet';
 import { Icon } from '@iconify-icon/react'
-import { AnimatePresence } from 'framer-motion';
 
 import { getNotes } from "../utils/notes";
 import { getCart } from '../utils/cart';
@@ -43,9 +42,7 @@ export default function Root() {
           <Sidebar />
         </aside>
         <article id="content" className="flex flex-col h-full min-h-screen justify-center border-l border-l-slate-300 dark:border-l-zinc-900  px-12 pt-4 pb-6" style={{ flex: "8 0 0", height: "auto", margin: "auto" }}>
-          <AnimatePresence mode="wait">
-            <Outlet />
-          </AnimatePresence>
+          <Outlet />
         </article>
       </main>
 

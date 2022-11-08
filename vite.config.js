@@ -2,7 +2,8 @@ import path from "path";
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 import react from "@vitejs/plugin-react";
 import mkcert from "vite-plugin-mkcert";
-import dynamicImport from 'vite-plugin-dynamic-import'
+import dynamicImport from 'vite-plugin-dynamic-import';
+import legacy from '@vitejs/plugin-legacy';
 // import webfontDownload from 'vite-plugin-webfont-dl'
 
 // https://vitejs.dev/config/
@@ -13,15 +14,19 @@ export default defineConfig({
     base: './dist',
     outDir: './dist',
     assetsDir: './assets',
+    emptyOutDir: true,
+    target: 'esnext'
   },
   server: {
     host: 'localhost',
-    https: true
   },
   plugins: [
     react(),
-    mkcert(),
     dynamicImport(),
+    splitVendorChunkPlugin(),
+    legacy({
+      targets: ['defaults', 'not IE 11']
+    })
     // webfontDownload(),
   ],
   resolve: {

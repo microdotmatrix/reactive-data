@@ -1,7 +1,6 @@
 import css from '@css/modules/home.module.scss';
 import { Link, useLoaderData } from 'react-router-dom';
 
-import Content from '_c/Content';
 import Helmet from 'react-helmet';
 
 export default function Home() {
@@ -15,13 +14,11 @@ export default function Home() {
       <header className={css.hero}>
         <img src={featuredImage.node.sourceUrl} alt={featuredImage.altText} />
       </header>
-      <Content className="container">
-        <div className={css.content}>
-          <h3 className="sub-title">This is the home page...</h3>
-          <p>There are many like it, but this one is mine.</p>
-          <div dangerouslySetInnerHTML={{ __html: content }} />
-        </div>
-      </Content>
+      <div className={css.content}>
+        <h3 className="sub-title">This is the home page...</h3>
+        <p>There are many like it, but this one is mine.</p>
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+      </div>
     </>
   )
 }
