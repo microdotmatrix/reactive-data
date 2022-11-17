@@ -1,10 +1,8 @@
-import { Suspense } from 'react'
-import { Link, useAsyncValue } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import css from '@css/modules/posts.module.scss';
 
-export default function PostList({ data }) {
-  const posts = useAsyncValue()
+export default function PostList({ posts }) {
   return (
     <div className={css.postList}>
         {posts?.nodes.map(({ postId, slug, title, excerpt, date, featuredImage, tags, categories, author }, index) => (

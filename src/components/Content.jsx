@@ -6,6 +6,7 @@ export default function Content({ children, ...props }) {
   let location = useLocation();
   return (
     <motion.div
+      key={location.pathname}
       variants={pageTransition}
       initial="init"
       animate="animate"

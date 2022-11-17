@@ -30,12 +30,12 @@ $xxlarge: '1440px';
 $max: '1600px';
 
 $map-for-breakpoints: (
-  'small': '512px',
-  'medium': '768px',
-  'large': '1024px',
-  'xlarge': '1280px',
-  'xxlarge': '1440px',
-  'xxxlarge': '1600px'
+  'small': '768px',
+  'medium': '960px',
+  'large': '1280px',
+  'xlarge': '1440px',
+  'desktop': '1600px',
+  'full': '1780px'
 );
 
 

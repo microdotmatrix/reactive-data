@@ -1,11 +1,8 @@
 import path from "path";
 import { defineConfig, splitVendorChunkPlugin } from "vite";
-// import react from "@vitejs/plugin-react";
 import { swcReactRefresh } from "vite-plugin-swc-react-refresh";
-import mkcert from "vite-plugin-mkcert";
 import dynamicImport from 'vite-plugin-dynamic-import';
 import legacy from '@vitejs/plugin-legacy';
-// import webfontDownload from 'vite-plugin-webfont-dl'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,14 +19,12 @@ export default defineConfig({
     host: 'localhost',
   },
   plugins: [
-    // react(),
     swcReactRefresh(),
     dynamicImport(),
     splitVendorChunkPlugin(),
     legacy({
       targets: ['defaults', 'not IE 11']
     })
-    // webfontDownload(),
   ],
   esbuild: { jsx: "automatic" },
   resolve: {

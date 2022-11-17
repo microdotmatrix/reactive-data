@@ -4,7 +4,7 @@ import "./styles/main.scss";
 // Import React's lazy and suspense modules for loading async components
 // Import Router functions
 import { Suspense, lazy } from 'react';
-import { createBrowserRouter, RouterProvider, useRouteError, useParams } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useRouteError } from "react-router-dom";
 
 // Synchronous route and loader elements
 import Root, { loader as rootLoader } from "./routes/root";
@@ -14,22 +14,19 @@ import Note, {
   action as noteAction,
 } from "./routes/notes/note";
 
-import { getHomePage, getAboutPage, sleep } from './utils/api';
+import { getHomePage, getAboutPage } from './utils/api';
 
-import Blog, { loader as blogLoader } from "./routes/blog";
+import { loader as blogLoader } from "./routes/blog";
 import { loader as postLoader } from "./routes/blog/$slug";
 import { loader as shopLoader } from './routes/shop';
 import { loader as productLoader } from './routes/shop/$handle'
 import Contact from './routes/contact';
 import Error from './routes/404';
-import Home from './routes/home';
 
 // Asynchronous route elements, lazy loaded with dynamic import for route based code splitting
-// const Home = lazy(() => import('./routes/home'));
-
+const Home = lazy(() => import('./routes/home'));
 const About = lazy(() => import('./routes/about'));
-// const Page = lazy(() => import('./routes/$uri'));
-// const Blog = lazy(() => import('./routes/blog'));
+const Blog = lazy(() => import('./routes/blog'));
 const Post = lazy(() => import('./routes/blog/$slug'));
 const Shop = lazy(() => import('./routes/shop'));
 const Product = lazy(() => import('./routes/shop/$handle'));
@@ -64,7 +61,11 @@ let router = createBrowserRouter([
             return page;
           },
         errorElement: <ErrorBoundary />,
-        element: <Home />
+        element: (
+          <Suspense fallback={<Loading />}> 
+            <Home />
+          </Suspense>
+        )
       },
       {
         // About page element
@@ -90,7 +91,11 @@ let router = createBrowserRouter([
         path: "/blog",
         loader: blogLoader,
         errorElement: <ErrorBoundary />,
-        element: <Blog />
+        element: (
+          <Suspense fallback={<Loading />}> 
+            <Blog />
+          </Suspense>
+        )
       },
       {
         // Dynamic route for viewing individual post loaded from WordPress API

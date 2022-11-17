@@ -1,25 +1,31 @@
+@use 'gerillass' as *;
 @use '@css/config' as *;
 @use '@css/functions' as *;
 
-.site-menu {
-  display: flex;
-  flex-flow: column wrap;
+#site-menu {
+  position: relative;
+  padding: 0 2rem;
+  z-index: 999;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  height: 100%;
-  margin: 0 auto;
-  padding-left: var(--space-m);
-  a[href] {
-    font-size: $lg;
-    font-weight: 500;
-    font-family: $ntr;
-    text-transform: uppercase;
-    &.active {
-      color: var(--c-linkActive);
-    }
+  max-height: 100vh;
+  flex: 1 0 100%;
+  background: var(--c-background);
+  @include breakpoint(min, medium) {
+    flex: 4 0 0;
+    display: flex;
   }
-  @media (min-width: $xlarge) {
-    flex-flow: row nowrap;
-    justify-content: space-between;
+}
+
+.mobile-nav {
+  display: block;
+  position: absolute;
+  z-index: 1000;
+  top: 2.25rem;
+  left: 2rem;
+  @include breakpoint(min, medium) {
+    display: none;
   }
 }
 
@@ -28,8 +34,13 @@
   flex-direction: column;
   align-items: center;
   position: fixed;
+  
   .site-logo {
+    display: none;
     text-align: center;
+    @include breakpoint(min, medium) {
+      display: flex;
+    }
   }
   .site-nav {
     padding: var(--space-s) 0;
@@ -41,11 +52,18 @@
       display: flex;
       flex-direction: column;
       gap: 2vh;
+      @include breakpoint(min, medium) {
+        gap: 4vh;
+        > a {
+          font-size: $lg;
+          letter-spacing: 0.063vw;
+        }
+      }
       > a {
         font-family: $smooch;
-        font-size: $lg;
         font-weight: 500;
-        letter-spacing: 0.063vw;
+        font-size: $h2;
+        letter-spacing: 0.101vw;
       }
     }
   }

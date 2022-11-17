@@ -14,7 +14,7 @@ export default function Sidebar({ menu }) {
       </section>
       
       <section className="site-nav">
-        <Nav menu={menu} />
+        <Nav />
       </section>
 
       <section className="notes-block">

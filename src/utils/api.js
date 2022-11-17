@@ -70,7 +70,6 @@ const GET_POSTS = gql`
 
 // Fetching posts from WordPress
 export const getPosts = async () => {
-  await sleep(1400);
   try {
     let data = await graphql.request(GET_POSTS, {});
     return json(data.posts);

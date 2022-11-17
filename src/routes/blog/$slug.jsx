@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Link, useLoaderData, useParams, Await } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import { sleep, getPost } from '_u/api';
 
@@ -9,11 +9,11 @@ const PostView = lazy(() => import('_c/blog/PostView'))
 
 export async function loader({ params }) {
   const slug = params.slug;
-  return defer({ post: getPost({ slug }) });
+  return await getPost({ slug });
 }
 
 export default function Post() {
-  let data = useLoaderData();
+  let post = useLoaderData();
   let slug = useParams();
   
   return (
@@ -23,9 +23,7 @@ export default function Post() {
         <meta name="description" content={post.excerpt} />
       </Helmet>
       <Suspense fallback={<Loading />}>
-        <Await resolve={data.post} errorElement={"Error getting post data"}>
-          {(data) => <PostView key={data.post.slug} post={data.post} slug={slug} />}
-        </Await>
+        <PostView key={slug} post={post} slug={slug} />
       </Suspense>
     </>
   )

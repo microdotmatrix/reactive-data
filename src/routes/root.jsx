@@ -1,4 +1,4 @@
-import { lazy, Suspense, useContext } from 'react'
+import { lazy, Suspense, useContext, useState } from 'react'
 import { useLoaderData, Link, Outlet } from "react-router-dom";
 import Helmet from 'react-helmet';
 import { Icon } from '@iconify-icon/react'
@@ -23,6 +23,7 @@ export async function loader() {
 export default function Root() {
   let { cart, notes } = useLoaderData()
   let { openCart } = useContext(ShopContext)
+  const [navOpen, setNavOpen] = useState(false)
   return (
     <>
       <Helmet>
@@ -38,10 +39,15 @@ export default function Root() {
       </Helmet>
       
       <main className='relative flex w-full'>
-        <aside className="relative py-8 justify-center flex flex-col items-center max-h-screen" style={{ flex: "4 0 0" }}>
+        <div className="mobile-nav">
+          <button onClick={() => setNavOpen(!navOpen)}>
+            <Icon icon="mdi:menu" width="3em" />
+          </button>
+        </div>
+        <aside id="site-menu" className={navOpen ? "flex" : "hidden" }>
           <Sidebar />
         </aside>
-        <article id="content" className="flex flex-col h-full min-h-screen justify-center border-l border-l-slate-300 dark:border-l-zinc-900  px-12 pt-4 pb-6" style={{ flex: "8 0 0", height: "auto", margin: "auto" }}>
+        <article id="content" className="site-content lg:border-l lg:border-l-slate-300 dark:border-l-zinc-900">
           <Outlet />
         </article>
       </main>
