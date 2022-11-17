@@ -1,6 +1,7 @@
 import path from "path";
 import { defineConfig, splitVendorChunkPlugin } from "vite";
-import react from "@vitejs/plugin-react";
+// import react from "@vitejs/plugin-react";
+import { swcReactRefresh } from "vite-plugin-swc-react-refresh";
 import mkcert from "vite-plugin-mkcert";
 import dynamicImport from 'vite-plugin-dynamic-import';
 import legacy from '@vitejs/plugin-legacy';
@@ -21,7 +22,8 @@ export default defineConfig({
     host: 'localhost',
   },
   plugins: [
-    react(),
+    // react(),
+    swcReactRefresh(),
     dynamicImport(),
     splitVendorChunkPlugin(),
     legacy({
@@ -29,6 +31,7 @@ export default defineConfig({
     })
     // webfontDownload(),
   ],
+  esbuild: { jsx: "automatic" },
   resolve: {
     alias: {
       '_a': path.resolve(__dirname, './src/assets'),
