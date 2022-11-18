@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import Helmet from 'react-helmet';
 import { getPosts } from '../../utils/api';
 
 import Loading from '_c/Loading';
@@ -19,8 +20,16 @@ export default function Blog() {
   }
   
   return (
-    <Suspense fallback={<Loading />}>
-      <PostList posts={posts} />
-    </Suspense>
+    <>
+      <Helmet>
+        <title>Latest Blog Posts from WordPress</title>
+        <meta name="description" content="Latest Blog Posts from WordPress" />
+      </Helmet>
+      <div className="page-view">
+        <Suspense fallback={<Loading />}>
+          <PostList posts={posts} />
+        </Suspense>
+      </div>
+    </>
   )
 }

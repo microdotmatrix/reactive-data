@@ -3,7 +3,7 @@ import { Icon } from '@iconify-icon/react';
 
 export default function Error() {
   return (
-    <>
+    <div className='page-view'>
       <div className='w-full flex justify-center'>
         <Icon icon="bi:wifi-off" width="8em" />
       </div>
@@ -11,6 +11,6 @@ export default function Error() {
       <p className='text-center'>
         <Link to="/">Go to the home page</Link>
       </p>
-    </>
+    </div>
   );
 }

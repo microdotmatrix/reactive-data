@@ -4,7 +4,7 @@ import { Icon } from '@iconify-icon/react';
 import css from '@css/modules/posts.module.scss'
 
 export default function PostView({ post }) {
-  let { title, date, content, featuredImage, author, tags, categories } = post;
+  let { id, title, date, content, featuredImage, author, tags, categories } = post;
 
   const name = author
     ? author.node.firstName && author.node.lastName
@@ -13,14 +13,14 @@ export default function PostView({ post }) {
     : null
   
   return (
-    <div className={css.post}>
+    <div className={css.post} key={id}>
       <header>
         {featuredImage?.node.sourceUrl ? (
           <img src={featuredImage?.node.sourceUrl} alt={title} className="w-full h-full object-cover absolute z-0" />
         ): (
           <img src="https://unsplash.it/1600/1200?random&gravity=center" alt={title} className="w-full h-full object-cover absolute z-0" />  
         )}
-        <div className='info py-4 px-12 z-10'>
+        <div className='relative py-4 px-4 md:px-6 lg:px-12 z-10 w-full'>
           <div className={css.categories}>
             <Icon icon="mdi:cat" width="1.2em" />
             {categories?.nodes.map(({ name }, index) => (

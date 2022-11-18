@@ -5,24 +5,25 @@
   width: 100%;
   height: 40vh;
   overflow: hidden;
-  position: fixed;
+  position: sticky;
   top: 0;
   right: 0;
   z-index: -1;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
   > img {
-    width: 50%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     position: absolute;
     right: 0;
-    transform: rotate(0.5turn);
+    //transform: rotate(0.5turn);
   }
   &::after {
     content: '';
     width: 100%;
     height: 100%;
-    background: gradient(subtle-grey);
+    background: gradient(gotham);
     position: absolute;
     opacity: 0.5;
     mix-blend-mode: overlay;
@@ -31,5 +32,6 @@
 }
 
 .content {
-  padding-top: 40vh;
+  padding: 4vh 0.5rem;
+  background: var(--c-background);
 }

@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import Helmet from 'react-helmet';
-import { sleep, getPost } from '_u/api';
+import { getPost } from '_u/api';
 
 
 import Loading from '_c/Loading';
@@ -23,7 +23,7 @@ export default function Post() {
         <meta name="description" content={post.excerpt} />
       </Helmet>
       <Suspense fallback={<Loading />}>
-        <PostView key={slug} post={post} slug={slug} />
+        <PostView key={post.id} post={post} slug={slug} />
       </Suspense>
     </>
   )

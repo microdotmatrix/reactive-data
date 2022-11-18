@@ -34,6 +34,7 @@ export default defineConfig({
       '_h': path.resolve(__dirname, './src/hooks'),
       '_r': path.resolve(__dirname, './src/routes'),
       '_u': path.resolve(__dirname, './src/utils'),
+      '_x': path.resolve(__dirname, './src/context'),
       '@css': path.resolve(__dirname, './src/styles'),
     }
   }

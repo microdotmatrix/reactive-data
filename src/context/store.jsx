@@ -124,6 +124,14 @@ class ShopProvider extends Component {
     return products;
   }
 
+  closeNav = () => {
+    this.setState({ isNavOpen: false });
+  };
+
+  openNav = () => {
+    this.setState({ isNavOpen: true });
+  };
+
   closeCart = () => {
     this.setState({ isCartOpen: false });
   };
@@ -142,6 +150,8 @@ class ShopProvider extends Component {
           fetchCollections: this.fetchCollections,
           fetchCollectionWithId: this.fetchCollectionWithId,
           getCheckoutSubtotal: this.getCheckoutSubtotal,
+          closeNav: this.closeNav.bind(this),
+          openNav: this.openNav.bind(this),
           closeCart: this.closeCart.bind(this),
           openCart: this.openCart.bind(this),
           addItemToCheckout: this.addItemToCheckout.bind(this),

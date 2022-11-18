@@ -22,7 +22,7 @@
   display: block;
   position: absolute;
   z-index: 1000;
-  top: 2.25rem;
+  top: 2rem;
   left: 2rem;
   @include breakpoint(min, medium) {
     display: none;
@@ -36,10 +36,14 @@
   position: fixed;
   
   .site-logo {
-    display: none;
+    display: flex;
     text-align: center;
+    width: 150px;
     @include breakpoint(min, medium) {
-      display: flex;
+      width: 200px;
+    }
+    @include breakpoint(min, large) {
+      width: 250px;
     }
   }
   .site-nav {
@@ -54,16 +58,16 @@
       gap: 2vh;
       @include breakpoint(min, medium) {
         gap: 4vh;
-        > a {
-          font-size: $lg;
-          letter-spacing: 0.063vw;
-        }
       }
       > a {
         font-family: $smooch;
         font-weight: 500;
         font-size: $h2;
         letter-spacing: 0.101vw;
+        @include breakpoint(min, medium) {
+          font-size: $lg;
+          letter-spacing: 0.063vw;
+        }
       }
     }
   }
@@ -75,7 +79,7 @@
     padding: var(--space-m) 0;
     > .btn {
       font-size: $p;
-      padding: 0.75rem 1rem;
+      padding: 0.5rem 1.25rem;
     }
   }
 }

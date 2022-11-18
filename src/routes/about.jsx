@@ -8,7 +8,7 @@ export default function About() {
   let page = useLoaderData();
 
   return (
-    <div className='about-content'>
+    <div className='page-view about-content'>
       <h1 className="title">{page.title}</h1>
       <h3 className="sub-title">Not sure what this thing is even for, tbh.</h3>
       <Suspense fallback={<Loading />}>

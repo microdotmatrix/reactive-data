@@ -35,8 +35,10 @@ export default function Product() {
     )
   }
   return (
-    <Suspense key={product.id} fallback={"Loading product info..."}>
-      <ProductCard product={product} handle={handle} optionSelect={optionSelect} />
-    </Suspense>
+    <div className='page-view'>
+      <Suspense key={product.id} fallback={"Loading product info..."}>
+        <ProductCard product={product} handle={handle} optionSelect={optionSelect} />
+      </Suspense>
+    </div>
   )
 }

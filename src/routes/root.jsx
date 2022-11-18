@@ -1,5 +1,5 @@
 import { lazy, Suspense, useContext, useState } from 'react'
-import { useLoaderData, Link, Outlet } from "react-router-dom";
+import { useLoaderData, Outlet } from "react-router-dom";
 import Helmet from 'react-helmet';
 import { Icon } from '@iconify-icon/react'
 
@@ -9,6 +9,7 @@ import { ShopContext } from '../context/store';
 
 import Sidebar from '../components/Sidebar';
 import DarkSwitch from '../components/DarkSwitch';
+import MobileNav from '../components/MobileNav';
 
 const Cart = lazy(() => import('../components/Cart'));
 
@@ -22,8 +23,8 @@ export async function loader() {
 
 export default function Root() {
   let { cart, notes } = useLoaderData()
-  let { openCart } = useContext(ShopContext)
-  const [navOpen, setNavOpen] = useState(false)
+  let { openCart, openNav, closeNav, isNavOpen } = useContext(ShopContext)
+
   return (
     <>
       <Helmet>
@@ -39,15 +40,11 @@ export default function Root() {
       </Helmet>
       
       <main className='relative flex w-full'>
-        <div className="mobile-nav">
-          <button onClick={() => setNavOpen(!navOpen)}>
-            <Icon icon="mdi:menu" width="3em" />
-          </button>
-        </div>
-        <aside id="site-menu" className={navOpen ? "flex" : "hidden" }>
+        <MobileNav />
+        <aside id="site-menu" className={isNavOpen ? "flex" : "hidden" }>
           <Sidebar />
         </aside>
-        <article id="content" className="site-content lg:border-l lg:border-l-slate-300 dark:border-l-zinc-900">
+        <article id="content" className="site-content md:border-l md:border-l-slate-300 dark:border-l-zinc-900">
           <Outlet />
         </article>
       </main>

@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Icon } from "@iconify-icon/react";
 import { ShopContext } from "../context/store";
 
 import { m, LazyMotion, domAnimation } from "framer-motion";
 
-import { formatCurrency } from '../utils/helpers'
+import { formatCurrency } from '_u/helpers'
 
 const sidebar = {
   open: (width = 500) => ({
@@ -39,10 +39,10 @@ const Cart = () => {
           animate={isCartOpen ? "open" : "closed"}
           variants={{
             open: {
-              width: "36%",
+              x: 0,
             },
             closed: {
-              width: 0,
+              x: '100%',
             },
           }}
           className="cart-container"

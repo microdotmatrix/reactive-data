@@ -15,8 +15,13 @@
   margin: auto;
   padding: 1rem 1rem 1.5rem;
   flex: 1 0 100%;
+  position: relative;
   @include breakpoint(min, medium) {
     flex: 8 0 0;
     padding: 1rem 3.5rem 1.5rem;
   }
+}
+
+.page-view {
+  padding-top: 20vh;
 }

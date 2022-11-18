@@ -1,6 +1,15 @@
 @use 'gerillass' as *;
 @use '../config' as *;
 
+.product-list {
+  .product-name {
+    font-size: $md;
+    @include breakpoint(min, medium) {
+      font-size: $h4;
+    }
+  }
+}
+
 .product {
   width: 100%;
   &__images {
@@ -41,4 +50,9 @@
       }
     }
   }
+}
+
+#variant-selector {
+  border: 1px solid #ccc;
+  padding: 5px; 
 }
