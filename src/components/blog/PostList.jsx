@@ -9,7 +9,7 @@ export default function PostList({ posts }) {
         <section key={index} className='post__card flex flex-col items-stretch justify-start'>
           <figure className={css.post__cover}>
             {featuredImage?.node.sourceUrl ? (
-              <img src={featuredImage?.node.sourceUrl} alt={title} className="w-full h-full object-cover object-center opacity-70" />
+              <img src={featuredImage?.node.sourceUrl} alt={title} height={featuredImage?.node.mediaDetails.height} width={featuredImage?.node.mediaDetails.width} className="w-full h-full object-cover object-center opacity-70" />
             ): (
               <img src="https://placeskull.com/1024/960/1f2731/17" alt={title} className="w-full h-full object-cover object-center opacity-70" />  
             )}

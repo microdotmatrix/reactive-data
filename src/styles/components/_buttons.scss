@@ -10,7 +10,8 @@ $hamburger-padding-y: 2rem;
 
 .btn,
 a[href].btn,
-button[type="submit"] {
+button[type="submit"],
+button[type="reset"]{
   border-radius: 8px;
   outline: 1px solid var(--c-fieldBorder);
   padding: calc($space-e / 6) calc($space-pi / 3);
@@ -31,6 +32,15 @@ button[type="submit"] {
   &:focus,
   &:focus-visible {
     outline: 2px auto -webkit-focus-ring-color;
+  }
+}
+
+button[type="reset"] {
+  color: var(--c-accentContrasted);
+  background: var(--c-accent);
+  &:hover {
+    color: var(--c-fieldBorder);
+    background: var(--c-bodyDimmed);
   }
 }
 

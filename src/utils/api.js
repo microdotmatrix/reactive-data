@@ -38,6 +38,10 @@ const GET_POSTS = gql`
             description
             caption
             altText
+            mediaDetails {
+              height
+              width
+            }
           }
         }
         tags(first: 10) {
@@ -78,6 +82,67 @@ export const getPosts = async () => {
   }
 }
 
+const GET_STICKY_POSTS = gql`
+  query getStickyPosts {
+    posts (first: 100, where: {orderby: {field: DATE, order: DESC}, onlySticky: true}) {
+      nodes {
+        postId
+        date
+        slug
+        uri
+        title
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl
+            title
+            sizes
+            description
+            caption
+            altText
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
+        tags(first: 10) {
+          nodes {
+            name
+          }
+        }
+        categories(first: 5) {
+          nodes {
+            name
+          }
+        }
+        author {
+          node {
+            name
+            slug
+            firstName
+            lastName
+            email
+            url
+            avatar {
+              url
+            }
+          }
+        }
+      } 
+    }
+  }
+`;
+
+export const getStickyPosts = async () => {
+  try {
+    let data = await graphql.request(GET_STICKY_POSTS, {});
+    return json(data.posts);
+  } catch (error) {
+    throw error.message
+  }
+}
+
 // GraphQL query post by slug
 const GET_POST = gql`
   query getPost($slug: String!) {
@@ -100,6 +165,10 @@ const GET_POST = gql`
         description
         caption
         altText
+        mediaDetails {
+          height
+          width
+        }
       }
     }
     tags(first: 10) {
@@ -160,6 +229,12 @@ const GET_ABOUT = gql`
           altText
           caption
           description
+          sizes
+          srcSet
+          mediaDetails {
+            height
+            width
+          }
         }
       }
     }
@@ -179,19 +254,26 @@ export async function getAboutPage() {
 const GET_HOME = gql`
   query getHomePage {
     pageBy(uri: "home") {
+      id
+      pageId
+      slug
+      title
       date
+      content
       featuredImage {
         node {
           sourceUrl
           altText
           caption
           description
+          sizes
+          srcSet
+          mediaDetails {
+            height
+            width
+          }
         }
       }
-      slug
-      pageId
-      content
-      id
     }
   }
 `

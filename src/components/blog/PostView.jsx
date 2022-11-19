@@ -5,7 +5,7 @@ import css from '@css/modules/posts.module.scss'
 
 export default function PostView({ post }) {
   let { id, title, date, content, featuredImage, author, tags, categories } = post;
-
+  const ftrImage = featuredImage?.node
   const name = author
     ? author.node.firstName && author.node.lastName
       ? `${author.node.firstName} ${author.node.lastName}`
@@ -16,7 +16,7 @@ export default function PostView({ post }) {
     <div className={css.post} key={id}>
       <header>
         {featuredImage?.node.sourceUrl ? (
-          <img src={featuredImage?.node.sourceUrl} alt={title} className="w-full h-full object-cover absolute z-0" />
+          <img src={featuredImage?.node.sourceUrl} alt={title} height={ftrImage.mediaDetails.height} width={ftrImage.mediaDetails.width} className="w-full h-full object-cover absolute z-0" />
         ): (
           <img src="https://unsplash.it/1600/1200?random&gravity=center" alt={title} className="w-full h-full object-cover absolute z-0" />  
         )}
